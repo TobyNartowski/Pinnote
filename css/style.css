@@ -1,0 +1,251 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+
+h2 {
+    font-weight: 700;
+}
+
+p {
+    font-weight: 300;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+@-webkit-keyframes GradientAnimation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes GradientAnimation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes GradientAnimation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* Login card */
+.login-card {
+    width: 30rem;
+    border-radius: 24px;
+    padding: 16px;
+}
+
+.btn-facebook {
+    background-color: #3b5998;
+    color: white;
+}
+
+.btn-facebook:hover {
+    background-color: #efefef;
+    color: #3b5998;
+}
+
+.btn-login {
+    color: white;
+    background: #ff2f15;
+}
+
+.btn-login:hover {
+    color: #ff2f15;
+    background: #efefef;
+}
+
+.center-img {
+    padding-top: 64px;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+/* Register card */
+.pos-top {
+    position: absolute;
+    z-index: 1;
+}
+
+.pos-bottom {
+    position: relative;
+    z-index: 0;
+}
+
+.btn-back {
+    margin: 20px;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    transition: 0.2s;
+}
+
+a .btn-back {
+    color: #212529;
+}
+
+.btn-back:hover {
+    background-color: #f6f6f6;
+    color: #007bff;
+}
+
+/* Card */
+@media (max-width: 768px) {
+    .center-img {
+        padding-top: 24px;
+    }
+}
+
+.custom-control {
+    font-weight: 300;
+}
+
+.card-container {
+    margin-top: 7rem;
+}
+
+.card {
+    margin-bottom: 24px;
+}
+
+.note-card {
+    height: 256px;
+    overflow: hidden;
+}
+
+.note-card .card-title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.note-card .card-text {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+.card-img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-img-overlay > .card-subtitle > a {
+    color: white;
+}
+
+.card-img-overlay > .card-subtitle > a:hover {
+    color: #e0e0e0;
+}
+
+.card-logo {
+    color: white;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 40px;
+}
+
+/* Navbar */
+.navbar {
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(240, 240, 240, 0.6);
+}
+
+/* Navbar */
+.tags-wrapper {
+    min-height: 40px;
+}
+
+.tags-wrapper .btn {
+    background-color: white;
+}
+
+.tags-wrapper .btn:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.search-box {
+    background-color: white;
+    height: 40px;
+    border-radius: 40px;
+}
+
+.search-txt {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: black;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .search-box {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .search-box > .search-txt {
+        padding: 0 6px 0 20px;
+        width: 80%;
+    }
+
+    .navbar {
+        justify-content: center;
+    }
+
+    .tags-wrapper {
+        width: 100%;
+    }
+
+    .tags-wrapper > .btn {
+        margin-bottom: 6px;
+    }
+
+    .navbar-brand {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .search-box:hover > .search-txt {
+        width: 140px;
+        padding: 0 6px 0 20px;
+    }
+
+    .search-box:hover > .search-btn {
+        background: white;
+        color: #007bff;
+    }
+
+    .search-txt {
+        transition: 0.4s;
+        width: 0px;
+    }
+}
+
+.search-btn {
+    color: black;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
