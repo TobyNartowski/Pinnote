@@ -27,6 +27,9 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <!-- Custom Javascript -->
+    <script src="js/app.js"></script>
 </head>
 <body>
     <!-- Login card -->
@@ -40,31 +43,33 @@
                     <h2 class="card-title">Sign in</h2>
                     <p class="card-subtitle mb-3 mt-2">and create your personal pinboard.</p>
 
-                    <div class="form-group input-group input-group-seamless">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fa fa-user"></i>
+                    <form class="form-validated" action="dashboard.html" novalidate>
+                        <div class="form-group input-group input-group-seamless">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-at"></i>
+                                </div>
                             </div>
+                            <input type="email" class="form-control" placeholder="Email" required>
+                            <div class="invalid-feedback">Please provide a valid email address.</div>
                         </div>
-                        <input type="text" class="form-control" placeholder="Login">
-                    </div>
-                    <div class="form-group input-group input-group-seamless">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fa fa-lock"></i>
+                        <div class="form-group input-group input-group-seamless">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-lock"></i>
+                                </div>
                             </div>
+                            <input type="password" class="form-control" placeholder="Password" required>
+                            <div class="invalid-feedback">Please provide a password.</div>
                         </div>
-                        <input type="password" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="form-group custom-control custom-checkbox mb-3">
-                        <input type="checkbox" class="custom-control-input" id="rememberCheck" checked>
-                        <label class="custom-control-label" for="rememberCheck">Remember me</label>
-                    </div>
-                    <div class="form-group">
-                        <a href="dashboard.html">
-                        <button type="button" class="btn btn-login btn-block">Sign in</button>
-                        </a>
-                    </div>
+                        <div class="form-group custom-control custom-checkbox mb-3 disable-validation">
+                            <input type="checkbox" class="custom-control-input" id="rememberCheck" checked>
+                            <label class="custom-control-label" for="rememberCheck" onmousedown="return false;">Remember me</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-login btn-block" value="Sign in" />
+                        </div>
+                    </form>
                     <div class="form-group">
                         <a href="#" class="btn btn-default btn-block btn-facebook"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>
                     </div>

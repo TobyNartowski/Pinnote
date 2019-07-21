@@ -32,6 +32,10 @@ a:hover {
 }
 
 /* Login card */
+.input-group.input-group-seamless > .input-group-prepend {
+    height: 40px;
+}
+
 .login-card {
     width: 30rem;
     border-radius: 24px;
