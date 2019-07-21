@@ -118,6 +118,25 @@ a .btn-back {
     margin-bottom: 24px;
 }
 
+.card > .card-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 15px;
+    z-index: 5;
+    font-size: 1.6rem;
+    color: #e0e0e0;
+
+}
+
+.close-img > i {
+    color: white;
+}
+
+.card > .card-close:hover > i {
+    color: #ff2f15;
+}
+
 .note-card {
     height: 256px;
     overflow: hidden;
@@ -127,6 +146,7 @@ a .btn-back {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    line-height: normal;
 }
 
 .note-card .card-text {
@@ -160,8 +180,8 @@ a .btn-back {
 
 /* Navbar */
 .navbar {
-    -webkit-backdrop-filter: blur(20px);
-    background: rgba(240, 240, 240, 0.6);
+    -webkit-backdrop-filter: blur(30px);
+    background: rgba(240, 240, 240, 0.5);
 }
 
 /* Navbar */
@@ -171,6 +191,7 @@ a .btn-back {
 
 .tags-wrapper .btn {
     background-color: white;
+    color: #a0a0a0;
 }
 
 .tags-wrapper .btn:hover {
