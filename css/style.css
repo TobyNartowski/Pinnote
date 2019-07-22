@@ -3,10 +3,6 @@ body {
     font-weight: 400;
 }
 
-h2 {
-    font-weight: 700;
-}
-
 p {
     font-weight: 300;
 }
@@ -15,7 +11,11 @@ a:hover {
     text-decoration: none;
 }
 
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
 @-webkit-keyframes GradientAnimation {
+    0%{background-position:0% 50%}
     0%{background-position:0% 50%}
     50%{background-position:100% 50%}
     100%{background-position:0% 50%}
@@ -32,6 +32,10 @@ a:hover {
 }
 
 /* Login card */
+.card-title {
+    font-weight: 700;
+}
+
 .input-group.input-group-seamless > .input-group-prepend {
     height: 40px;
 }
@@ -189,7 +193,7 @@ a .btn-back {
 }
 
 .tags-wrapper .btn {
-    background-color: #fafafa;
+    background-color: #f6f6f6;
     color: #5a6169;
 }
 
@@ -199,7 +203,7 @@ a .btn-back {
 }
 
 .search-box {
-    background-color: #fafafa;
+    background-color: #f6f6f6;
     height: 40px;
     border-radius: 40px;
 }
@@ -220,6 +224,8 @@ a .btn-back {
 
 .navbar-filter > .number {
     position: absolute;
+    right: 0;
+    top: 0;
     text-align: center;
     margin-left: 6px;
     background-color: red;
@@ -228,6 +234,7 @@ a .btn-back {
     border-radius: 50%;
     color: white;
     font-size: 11px;
+    line-height: 0.95rem;
 }
 
 @media (max-width: 768px) {
@@ -255,7 +262,7 @@ a .btn-back {
 
     .search-box > .search-txt {
         padding: 0 6px 0 20px;
-        width: 80%;
+        width: 75%;
     }
 
     .tags-wrapper {
@@ -284,7 +291,7 @@ a .btn-back {
 
     .search-txt {
         transition: 0.4s;
-        width: 0px;
+        width: 0;
     }
 }
 
@@ -294,7 +301,7 @@ a .btn-back {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #fafafa;
+    background-color: #f6f6f6;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -303,4 +310,21 @@ a .btn-back {
 
 .navbar-btn:hover {
     color: #007bff;
+    cursor: pointer;
+}
+
+.btn-dropdown {
+    color: white;
+    background-color: red;
+    border-radius: 16px 8px 16px 16px;
+    position: absolute;
+    margin-top: 3rem;
+    top: 0;
+    right: 0;
+    width: 256px;
+    height: 128px;
+}
+
+.btn-dropdown {
+
 }

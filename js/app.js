@@ -17,7 +17,7 @@ window.addEventListener('load', function() {
 }, false);
 
 // Navbar tags
-let navbarTagsWidth = 0;
+var navbarTagsWidth = 0;
 
 function checkTagsWidth() {
     var navbarFilter = $('.navbar-filter');
@@ -31,7 +31,7 @@ function checkTagsWidth() {
             navbarTagsWidth = navbarTags.width();
         }
 
-        if ((navbarTagsWidth + 300.0) > $(window).width() - 150.0) {
+        if ((navbarTagsWidth + 310.0) > $(window).width() - 150.0) {
             navbarFilter.show();
             navbarTags.hide();
         } else {
@@ -41,6 +41,13 @@ function checkTagsWidth() {
     }
 }
 
-//  TODO: check after new tag
-window.onload = checkTagsWidth;
-$(window).resize(checkTagsWidth);
+window.onload = function() {
+    //  TODO: check after new tag
+    checkTagsWidth();
+    $(window).resize(checkTagsWidth);
+
+    // Settings button
+    $('#settingsButton').click(function() {
+        $('#settingsContent').toggle();
+    });
+}
