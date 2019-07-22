@@ -15,3 +15,32 @@ window.addEventListener('load', function() {
         }, false);
     });
 }, false);
+
+// Navbar tags
+let navbarTagsWidth = 0;
+
+function checkTagsWidth() {
+    var navbarFilter = $('.navbar-filter');
+    var navbarTags = $('.tags-wrapper');
+
+    if ($(window).width() <= 768) {
+        navbarFilter.show();
+        navbarTags.hide();
+    } else {
+        if (navbarTagsWidth === 0) {
+            navbarTagsWidth = navbarTags.width();
+        }
+
+        if ((navbarTagsWidth + 300.0) > $(window).width() - 150.0) {
+            navbarFilter.show();
+            navbarTags.hide();
+        } else {
+            navbarFilter.hide();
+            navbarTags.show();
+        }
+    }
+}
+
+//  TODO: check after new tag
+window.onload = checkTagsWidth;
+$(window).resize(checkTagsWidth);

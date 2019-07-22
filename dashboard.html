@@ -27,6 +27,9 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <!-- Custom Javascript -->
+    <script src="js/app.js"></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -34,25 +37,39 @@
         <a class="navbar-brand" href="index.html">
             <img src="img/logo_color_dark.png" height="30" class="d-inline-block align-top" alt="logo">
         </a>
-        <form class="form-inline justify-content-center text-center">
+        <div class="form-inline justify-content-center text-center">
             <div class="tags-wrapper pr-3">
                 <span class="btn btn-pill btn-sm navbar-text pr-3">
-                    #old
+                    #landscape
                 </span>
                  <span class="btn btn-pill btn-sm navbar-text pr-3">
                     #photography
                 </span>
                 <span class="btn btn-pill btn-sm navbar-text pr-3">
-                    #landscape
+                    #dummy
                 </span>
+                <span class="btn btn-pill btn-sm navbar-text pr-3">
+                    #different
+                </span>
+            </div>
+            <div class="navbar-filter input-group input-group-seamless mr-2">
+                <span class="number animated bounceIn">4</span>
+                <a href="#" class="navbar-btn">
+                    <i class="fas fa-filter"></i>
+                </a>
             </div>
             <div class="search-box input-group input-group-seamless mr-2">
                 <input type="text" placeholder="Search..." class="search-txt">
-                <a href="#" class="search-btn">
-                    <i class="fa fa-search"></i>
+                <a href="#" class="navbar-btn">
+                    <i class="fa fa-search animated rotateIn"></i>
                 </a>
             </div>
-        </form>
+            <div class="navbar-profile input-group input-group-seamless mr-2">
+                <a href="#" class="navbar-btn">
+                    <i class="fas fa-bars animated rotateIn"></i>
+                </a>
+            </div>
+        </div>
     </nav>
 
     <!-- Cards -->
