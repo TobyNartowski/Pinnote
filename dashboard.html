@@ -34,46 +34,73 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar fixed-top flex-row">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="#">
             <img src="img/logo_color_dark.png" height="30" class="d-inline-block align-top" alt="logo">
         </a>
         <div class="form-inline justify-content-center text-center">
             <div class="tags-wrapper pr-3">
-                <span class="btn btn-pill btn-sm navbar-text pr-3">
+                <span class="btn btn-tag btn-pill btn-sm navbar-text pr-3">
                     #landscape
                 </span>
-                 <span class="btn btn-pill btn-sm navbar-text pr-3">
+                 <span class="btn btn-tag btn-pill btn-sm navbar-text pr-3">
                     #photography
                 </span>
-                <span class="btn btn-pill btn-sm navbar-text pr-3">
+                <span class="btn btn-tag btn-pill btn-sm navbar-text pr-3">
                     #dummy
                 </span>
+                <span class="btn btn-tag btn-pill btn-sm navbar-text pr-3">
+                    #nothingimportant
+                </span>
+                <span class="btn btn-tag btn-pill btn-sm navbar-text pr-3">
+                    #secondthing
+                </span>
             </div>
-            <div class="navbar-filter input-group input-group-seamless mr-2">
-                <span class="number animated bounceIn">5</span>
-                <a href="#" class="navbar-btn">
-                    <i class="fas fa-filter"></i>
-                </a>
+            <div id="navbarFilter" class="navbar-filter input-group input-group-seamless mr-2">
+                <div id="filterButton">
+                    <span class="number animated bounceIn" onselectstart="return false">5</span>
+                    <div class="navbar-btn">
+                        <i id="filterIcon" class="fas fa-filter"></i>
+                    </div>
+                </div>
+                <span id="filterContent" class="hidden navbar-content">
+                    <div class="btn-dropdown d-flex animated fadeInRight">
+                       <div class="btn-dropdown-item w-100 animated slideInRight">
+                            <a href="#" class="btn btn-tag btn-sm btn-block btn-pill">#lanscape</a>
+                        </div>
+                       <div class="btn-dropdown-item w-100 animated slideInRight">
+                            <a href="#" class="btn btn-tag btn-sm btn-block btn-pill">#photography</a>
+                        </div>
+                        <div class="btn-dropdown-item w-100 animated slideInRight">
+                            <a href="#" class="btn btn-tag btn-sm btn-block btn-pill">#dummy</a>
+                        </div>
+                        <div class="btn-dropdown-item w-100 animated slideInRight">
+                            <a href="#" class="btn btn-tag btn-sm btn-block btn-pill">#nothingimportant</a>
+                        </div>
+                        <div class="btn-dropdown-item w-100 animated slideInRight">
+                            <a href="#" class="btn btn-tag btn-sm btn-block btn-pill">#secondthing</a>
+                        </div>
+                    </div>
+                </span>
             </div>
             <div class="search-box input-group input-group-seamless mr-2">
                 <input type="text" placeholder="Search..." class="search-txt">
                 <a href="#" class="navbar-btn">
-                    <i class="fa fa-search animated rotateIn"></i>
+                    <i class="fa fa-search"></i>
                 </a>
             </div>
             <div id="navbarSettings" class="navbar-settings input-group input-group-seamless mr-2">
                 <div id="settingsButton" class="navbar-btn">
-                    <i class="fas fa-bars animated rotateIn"></i>
+                    <i id="settingsIcon" class="fas fa-bars"></i>
                 </div>
-                <span id="settingsContent" class="hidden">
-                    <div class="btn-dropdown d-flex">
-                        <div class="btn-dropdown-item w-100">
-                            <a href="#" class="btn btn-sm btn-outline-dark btn-block btn-pill">
+                <span id="settingsContent" class="hidden navbar-content">
+                    <div class="btn-dropdown d-flex animated fadeInRight">
+                        <div class="btn-dropdown-item w-100 animated slideInRight">
+                            <a href="#" class="btn btn-sm btn-dark btn-block btn-pill">
                                 <i class="fas fa-moon"></i>&nbsp; Dark mode</a>
                         </div>
-                       <div class="btn-dropdown-item w-100">
-                            <a href="#" class="btn btn-sm btn-outline-danger btn-block btn-pill">
-                                <i class="fas fa-sign-out-alt"></i></i>&nbsp; Logout</a>
+                       <div class="btn-dropdown-item w-100 animated slideInRight">
+                            <a href="index.html" class="btn btn-sm btn-outline-danger btn-block btn-pill">
+                                <i class="fas fa-sign-out-alt"></i>&nbsp; Logout</a>
                         </div>
                     </div>
                 </span>
