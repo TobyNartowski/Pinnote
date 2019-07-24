@@ -11,8 +11,17 @@ a:hover {
     text-decoration: none;
 }
 
-:focus {outline:none;}
-::-moz-focus-inner {border:0;}
+:focus {
+    outline: none;
+}
+
+::-moz-focus-inner {
+    border: 0;
+}
+
+.hidden {
+    display: none;
+}
 
 @-webkit-keyframes GradientAnimation {
     0%{background-position:0% 50%}
@@ -52,18 +61,19 @@ a:hover {
 }
 
 .btn-facebook:hover {
-    background-color: #efefef;
+    background-color: #eaeaea;
     color: #3b5998;
 }
 
 .btn-login {
+    margin-top: 2rem;
     color: white;
     background: #ff2f15;
 }
 
 .btn-login:hover {
     color: #ff2f15;
-    background: #efefef;
+    background: #eaeaea;
 }
 
 .center-img {
@@ -190,15 +200,26 @@ a .btn-back {
 .tags-wrapper {
     min-height: 40px;
     overflow: hidden;
+    text-align: center;
 }
 
 .tags-wrapper .btn {
-    background-color: #f6f6f6;
+    background-color: #007bff;
     color: #5a6169;
+    height: 40px;
 }
 
 .tags-wrapper .btn:hover {
-    background-color: #007bff;
+    background-color: #429dff;
+    color: white;
+}
+
+.tags-wrapper .navbar-text {
+    line-height: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 10px;
     color: white;
 }
 
@@ -215,14 +236,14 @@ a .btn-back {
     float: left;
     padding: 0;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .search-txt::placeholder  {
     color: #5a6169;
 }
 
-.navbar-filter > .number {
+.navbar .number {
     position: absolute;
     right: 0;
     top: 0;
@@ -246,7 +267,7 @@ a .btn-back {
         width: auto;
     }
 
-    .navbar-profile {
+    .navbar-settings {
         display: none;
     }
 
@@ -314,17 +335,27 @@ a .btn-back {
 }
 
 .btn-dropdown {
-    color: white;
-    background-color: red;
-    border-radius: 16px 8px 16px 16px;
+    background-color: #f6f6f6;
+    border-radius: 16px 2px 16px 16px;
     position: absolute;
-    margin-top: 3rem;
     top: 0;
     right: 0;
     width: 256px;
-    height: 128px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 3rem;
+    padding: 20px;
 }
 
-.btn-dropdown {
+.btn-dropdown-item {
+    padding-bottom: 10px;
+}
 
+.btn-dropdown-item .btn {
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 18px;
 }

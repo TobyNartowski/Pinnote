@@ -46,8 +46,24 @@ window.onload = function() {
     checkTagsWidth();
     $(window).resize(checkTagsWidth);
 
+    // Labels selection
+    $('label').mousedown(function() {
+        return false;
+    });
+
     // Settings button
+    var settingsEnabled = false;
     $('#settingsButton').click(function() {
         $('#settingsContent').toggle();
+        settingsEnabled = !settingsEnabled;
     });
+
+    document.onclick = function(e) {
+        if (settingsEnabled === true 
+            && e.target.id != 'navbarSettings'
+            && !document.getElementById('navbarSettings').contains(e.target)) {
+                $('#settingsContent').hide();
+                settingsEnabled = false;
+        }            
+    }
 }
