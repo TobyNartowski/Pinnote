@@ -8,11 +8,11 @@ function checkTagsWidth() {
         navbarFilter.show();
         navbarTags.hide();
     } else {
-        if (navbarTagsWidth === 0) {
+        if (navbarTagsWidth === 0 && navbarTags.is(':visible')) {
             navbarTagsWidth = navbarTags.width();
         }
 
-        if ((navbarTagsWidth + 310.0) > $(window).width() - 150.0) {
+        if ((navbarTagsWidth + 305.0) > $(window).width() - 150.0) {
             navbarFilter.show();
             navbarTags.hide();
         } else {

@@ -360,6 +360,7 @@ a .btn-back {
         position: fixed;
         margin-top: 7rem;
         width: 100%;
+        border-radius: 16px;
     }
 }
 
@@ -376,5 +377,32 @@ a .btn-back {
     .search-txt {
         transition: 0.4s;
         width: 0;
+    }
+}
+
+/* Card details */
+.card-details {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.card-details .card-close {
+    color: #ff2f15;
+}
+
+.card-details .card-close:hover i {
+    color: #941b0c;
+}
+
+.container {
+    filter: blur(12px);
+}
+
+@media (max-width: 768px) {
+    .card-details {
+        min-width: 80%;
     }
 }
