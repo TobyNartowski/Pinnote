@@ -30,6 +30,7 @@
 
     <!-- Custom Javascript -->
     <script src="js/app.js"></script>
+    <script src="js/details.js"></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -112,12 +113,12 @@
     <div class="container card-container">
         <div class="row mb-5">
             <div class="col-lg-4 col-md-6">
-                <div class="card note-card">
+                <div id="1" class="card note-card">
                     <a href="#" class="card-close">
                         <i class="fas fa-times"></i>
                     </a>
                     <div class="card-body">
-                        <a href="#" data-toggle="modal" data-target="#cardDetails"><h3 class="card-title">Lorem ipsum</h3></a>
+                        <h3 class="card-title">Lorem ipsum</h3>
                             <h5 class="card-subtitle mt-1">
                                 <a href="#dummy">#dummy</a>
                                 <a href="#data">#data</a>
@@ -130,13 +131,13 @@
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="card note-card">
+                <div id="2" class="card note-card">
                     <a href="#" class="card-close close-img">
                         <i class="fas fa-times"></i>
                     </a>
                     <img class="card-img" src="https://static1.squarespace.com/static/55cb4361e4b08dc9aca88339/t/5a9780140852296b12e8a792/1519878203039/Moeraki-Boulders-Sunrise-Long-Exposure-New-Zealand.jpg" alt="Card image">
                     <div class="card-img-overlay">
-                        <a href="#"><h3 class="card-title">Holiday photo</h3></a>
+                        <h3 class="card-title">Holiday photo</h3>
                         <h5 class="card-subtitle mt-1 text">
                             <a href="#holiday">#holiday</a>
                             <a href="#sea">#sea</a>
@@ -146,13 +147,13 @@
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="card note-card">
+                <div id="3" class="card note-card">
                     <a href="#" class="card-close close-img">
                         <i class="fas fa-times"></i>
                     </a>
                     <img class="card-img" src="https://kinomuranow.pl/sites/default/files/media_uploaded/obrazy/filmy/apollo_112.jpg" alt="Card image">
                     <div class="card-img-overlay">
-                        <a href="#"><h3 class="card-title">Apollo 11 picture</h3></a>
+                        <h3 class="card-title">Apollo 11 picture</h3>
                         <h5 class="card-subtitle mt-1 text">
                             <a href="#apollo11">#apollo11</a>
                         </h5>
@@ -161,12 +162,12 @@
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="card note-card">
+                <div id="4" class="card note-card">
                     <a href="#" class="card-close">
                         <i class="fas fa-times"></i>
                     </a>
                     <div class="card-body">
-                        <a href="#"><h3 class="card-title">Different Lorem ipsum</h3></a>
+                        <h3 class="card-title">Different Lorem ipsum</h3>
                             <h5 class="card-subtitle mt-1">
                                 <a href="#dummy">#dummy</a>
                                 <a href="#data">#data</a>
@@ -179,12 +180,12 @@
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="card note-card">
+                <div id="5" class="card note-card">
                     <a href="#" class="card-close">
                         <i class="fas fa-times"></i>
                     </a>
                     <div class="card-body">
-                        <a href="#"><h3 class="card-title">Another one</h3></a>
+                        <h3 class="card-title">Another one</h3>
                             <h5 class="card-subtitle mt-1">
                                 <a href="#dummy">#dummy</a>
                                 <a href="#data">#data</a>
@@ -197,13 +198,13 @@
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="card note-card">
+                <div id="6" class="card note-card">
                     <a href="#" class="card-close close-img">
                         <i class="fas fa-times"></i>
                     </a>
                     <img class="card-img" src="https://cdn.shopifycloud.com/hatchful-web/assets/6fcc76cfd1c59f44d43a485167fb3139.png" alt="Card image">
                     <div class="card-img-overlay">
-                        <a href="#"><h3 class="card-title">Some logo</h3></a>
+                        <h3 class="card-title">Some logo</h3>
                         <h5 class="card-subtitle mt-1 text">
                             <a href="#logo">#logo</a>
                         </h5>
@@ -212,13 +213,13 @@
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="card note-card">
+                <div id="7" class="card note-card">
                     <a href="#" class="card-close close-img">
                         <i class="fas fa-times"></i>
                     </a>
                     <img class="card-img" src="https://img.youtube.com/vi/9ZfN87gSjvI/0.jpg" alt="Card image">
                     <div class="card-img-overlay">
-                        <a href="#"><h3 class="card-title">YT video</h3></a>
+                        <h3 class="card-title">YT video</h3>
                         <h5 class="card-subtitle mt-1 text">
                             <a href="#youtube">#youtube</a>
                             <a href="#landscape">#landscape</a>
@@ -233,16 +234,16 @@
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="card note-card">
+                <div id="8" class="card note-card">
                     <a href="#" class="card-close">
                         <i class="fas fa-times"></i>
                     </a>
                     <div class="card-body">
-                        <a href="#"><h3 class="card-title">Lorem ipsum</h3></a>
-                            <h5 class="card-subtitle mt-1">
-                                <a href="#dummy">#dummy</a>
-                                <a href="#data">#data</a>
-                            </h5>
+                        <h3 class="card-title">Lorem ipsum</h3>
+                        <h5 class="card-subtitle mt-1">
+                            <a href="#dummy">#dummy</a>
+                            <a href="#data">#data</a>
+                        </h5>
                         <p class="card-text mt-2">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </p>
@@ -252,21 +253,16 @@
         </div>
     </div>
 
-    <div class="details-containter">
-        <div class="card-details">
-            <div class="card note-card">
-                <a href="#" class="card-close">
+    <div class="details-container hidden">
+        <div id="details" class="card-details">
+            <div class="card note-card animated fadeIn">
+                <div class="card-close details-close">
                     <i class="fas fa-times"></i>
-                </a>
+                </div>
                 <div class="card-body">
-                    <a href="#" data-toggle="modal" data-target="#cardDetails"><h3 class="card-title">Lorem ipsum</h3></a>
-                        <h5 class="card-subtitle mt-1">
-                            <a href="#dummy">#dummy</a>
-                            <a href="#data">#data</a>
-                        </h5>
-                    <p class="card-text mt-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
+                    <h3 class="card-title">None</h3>
+                    <h5 class="card-subtitle mt-1">None</h5>
+                    <p class="card-text mt-2">None</p>
                 </div>
             </div>
         </div>

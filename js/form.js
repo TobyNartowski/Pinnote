@@ -15,8 +15,8 @@ window.addEventListener('load', function() {
     });
 }, false);
 
-window.onload = function() {
+$(document).ready(function() {
     $('label').mousedown(function() {
         return false;
-    });    
-}
+    });
+});

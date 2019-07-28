@@ -43,6 +43,7 @@ a:hover {
 /* Login card */
 .card-title {
     font-weight: 700;
+    cursor: pointer;
 }
 
 .input-group.input-group-seamless > .input-group-prepend {
@@ -386,7 +387,8 @@ a .btn-back {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10;
+    z-index: 5000;
+    min-width: 540px;
 }
 
 .card-details .card-close {
@@ -397,12 +399,22 @@ a .btn-back {
     color: #941b0c;
 }
 
-.container {
-    filter: blur(12px);
+.card-container {
+    transition: 0.25s;
+}
+
+.details-close {
+    cursor: pointer;
+}
+
+.card-details > .note-card {
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
 }
 
 @media (max-width: 768px) {
+
     .card-details {
-        min-width: 80%;
+        min-width: 320px;
     }
 }

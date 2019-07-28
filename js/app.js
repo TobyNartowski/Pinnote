@@ -35,7 +35,7 @@ function toggleDropdown(e, b, c) {
     }
 }
 
-window.onload = function() {
+$(document).ready(function() {
     //  TODO: check after new tag
     checkTagsWidth();
     $(window).resize(checkTagsWidth);
@@ -72,9 +72,9 @@ window.onload = function() {
     });
 
 
-    document.onclick = function(e) {
+    $(document).on('click', function(e) {
         // Settings button
-        if (settingsEnabled === true 
+        if (settingsEnabled === true
             && e.target.id != 'navbarSettings'
             && !document.getElementById('navbarSettings').contains(e.target)) {
                 toggleDropdown($('#settingsContent'), settingsEnabled, $('#settingsIcon'));
@@ -82,12 +82,11 @@ window.onload = function() {
         }
 
         // Filter button
-        if (filterEnabled === true 
+        if (filterEnabled === true
             && e.target.id != 'navbarFilter'
             && !document.getElementById('navbarFilter').contains(e.target)) {
                 toggleDropdown($('#filterContent'), filterEnabled, $('#filterIcon'));
                 filterEnabled = !filterEnabled;
         }
-    }
-
-}
+    });
+});
