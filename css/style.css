@@ -418,3 +418,25 @@ a .btn-back {
         min-width: 320px;
     }
 }
+
+.details-arrows {
+    position: fixed;
+    z-index: 5000;
+    color: black;
+    top: 45%;
+}
+
+.arrow-left {
+    position: inherit;
+    left: 0;
+    margin-left: 4rem;
+    cursor: pointer;
+
+}
+
+.arrow-right {
+    position: inherit;
+    right: 0;
+    margin-right: 4rem;
+    cursor: pointer;
+}

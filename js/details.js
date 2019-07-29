@@ -47,11 +47,42 @@ $(document).on('click', function(e) {
         counter++;
     }
 
+    // TODO: Disable exiting details while clicking on arrows
+    console.log(e.target);
+
     if (counter % 2 === 0
         && !document.getElementById('details').contains(e.target)) {
         closeDetailsContainer();
     }
 });
+
+function moveLeft() {
+    cardLoaded--;
+    if (cardLoaded === 0) {
+        cardLoaded = $('.card-container .card-title').length;
+    }
+    $('.card-details > .note-card').addClass('fadeOutRight')
+        .delay(200).queue(function(next) {
+            $(this).removeClass('fadeOutRight fadeInRight');
+            loadDetails(cardLoaded);
+            $(this).addClass('fadeInLeft');
+            next();
+        });
+}
+
+function moveRight() {
+    cardLoaded++;
+    if (cardLoaded === $('.card-container .card-title').length + 1) {
+        cardLoaded = 1;
+    }
+    $('.card-details > .note-card').addClass('fadeOutLeft')
+        .delay(200).queue(function(next) {
+            $(this).removeClass('fadeOutLeft fadeInLeft');
+            loadDetails(cardLoaded);
+            $(this).addClass('fadeInRight');
+            next();
+        });
+}
 
 $(document).keydown(function(e) {
     if (!detailsFocused) {
@@ -60,30 +91,18 @@ $(document).keydown(function(e) {
 
     switch (e.which) {
         case 37:
-            cardLoaded--;
-            if (cardLoaded === 0) {
-                cardLoaded = $('.card-container .card-title').length;
-            }
-            $('.card-details > .note-card').addClass('fadeOutRight')
-                .delay(200).queue(function(next) {
-                    $(this).removeClass('fadeOutRight fadeInRight');
-                    loadDetails(cardLoaded);
-                    $(this).addClass('fadeInLeft');
-                    next();
-                });
+            moveLeft();
             break;
         case 39:
-            cardLoaded++;
-            if (cardLoaded === $('.card-container .card-title').length + 1) {
-                cardLoaded = 1;
-            }
-            $('.card-details > .note-card').addClass('fadeOutLeft')
-                .delay(200).queue(function(next) {
-                    $(this).removeClass('fadeOutLeft fadeInLeft');
-                    loadDetails(cardLoaded);
-                    $(this).addClass('fadeInRight');
-                    next();
-                });
-        break;
+            moveRight();
+            break;
     }
+});
+
+$('.details-arrows .arrow-left').on('click', function() {
+    moveLeft();
+});
+
+$('.details-arrows .arrow-right').on('click', function() {
+    moveRight();
 });
