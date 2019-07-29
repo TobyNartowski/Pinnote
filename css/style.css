@@ -431,7 +431,8 @@ a .btn-back {
     left: 0;
     margin-left: 4rem;
     cursor: pointer;
-
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
 }
 
 .arrow-right {
@@ -439,4 +440,22 @@ a .btn-back {
     right: 0;
     margin-right: 4rem;
     cursor: pointer;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+}
+
+.disable {
+    cursor: default !important;
+}
+
+.disable-white {
+    color: white !important;
+}
+
+.disable-blue {
+    color: #007bff !important;
+}
+
+.disable-gray {
+    color: #e0e0e0 !important;
 }
