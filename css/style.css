@@ -384,11 +384,25 @@ a .btn-back {
 /* Card details */
 .card-details {
     position: fixed;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5000;
     min-width: 540px;
+}
+
+.card-details .note-card {
+    height: auto;
+    min-height: 256px;
+    max-height: 90vh;
+}
+
+.card-content .card-img {
+    max-height: 60vh;
+}
+
+.card-content iframe {
+    height: auto;
 }
 
 .card-details .card-close {
@@ -410,13 +424,6 @@ a .btn-back {
 .card-details > .note-card {
     -webkit-animation-duration: 0.3s;
     animation-duration: 0.3s;
-}
-
-@media (max-width: 768px) {
-
-    .card-details {
-        min-width: 320px;
-    }
 }
 
 .details-arrows {
@@ -458,4 +465,11 @@ a .btn-back {
 
 .disable-gray {
     color: #e0e0e0 !important;
+}
+
+@media (max-width: 768px) {
+
+    .card-details {
+        min-width: 320px;
+    }
 }

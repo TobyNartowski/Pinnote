@@ -6,6 +6,18 @@ var eventHandler = function(e) {
    e.preventDefault();
 }
 
+// Get youtube video id
+function getYoutubeId(url) {
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
+
+    if (match && match[2].length == 11) {
+        return match[2];
+    } else {
+        return 'error';
+    }
+}
+
 // Close card details
 function closeDetailsContainer() {
     $('.card-container').css('filter', 'blur(0px)');
@@ -17,14 +29,17 @@ function closeDetailsContainer() {
         $('.details-arrows .arrow-right').removeClass('fadeOutRight').addClass('slideInRight');
         $('.details-container').hide();
         $('.card-details > .note-card').removeClass('fadeOut');
+        $('#details .card-content').html('');
         next();
     });
 
     $('.card-container .note-text a').removeClass('disable-blue');
     $('.card-container .note-text i').removeClass('disable-gray');
     $('.card-container .note-img a, .card-container .note-img i').removeClass('disable-white');
+    $('.card-container .note-video a, .card-container .note-video i').removeClass('disable-white');
     $('.card-container *').removeClass('disable');
     $('.card-container a').unbind('click', eventHandler);
+
     detailsFocused = false;
 }
 
@@ -34,12 +49,25 @@ function loadDetails(id) {
     var target = $('#' + id);
     var targetTitle = target.find('.card-title').html();
     var targetSubtitle = target.find('.card-subtitle > a').clone(true).append(' ');
+    var targetContent;
     targetSubtitle.removeClass('disable disable-white disable-blue');
-    var targetContent = target.find('.card-text').html();
+
+    if (target.hasClass('note-video')) {
+        targetContent = $('<iframe>', {
+            width: 640,
+            height: 360,
+            frameborder: '0',
+            src: 'http://www.youtube.com/embed/' + getYoutubeId(target.find('.video-content').attr('href'))
+        });
+    } else if (target.hasClass('note-img')) {
+        targetContent = target.find('.card-img');
+    } else {
+        targetContent = target.find('.card-text');
+    }
 
     details.find('.card-title').text(targetTitle);
     details.find('.card-subtitle').html(targetSubtitle);
-    details.find('.card-text').text(targetContent == null ? 'None' : targetContent);
+    details.find('.card-content').html(targetContent.clone(false));
 }
 
 // Execute when ready
@@ -69,6 +97,7 @@ $(document).ready(function() {
         $('.card-container .note-text a').addClass('disable-blue');
         $('.card-container .note-text i').addClass('disable-gray');
         $('.card-container .note-img a, .card-container .note-img i').addClass('disable-white');
+        $('.card-container .note-video a, .card-container .note-video i').addClass('disable-white');
         $('.card-container *').addClass('disable');
         $('.card-container a').bind('click', eventHandler);
 
@@ -83,12 +112,13 @@ $(document).ready(function() {
 
 // Check if card is opened and supposed to be closed
 $(document).on('click', function(e) {
-    if (detailsFocused) {
-        counter++;
+    if (document.getElementById('arrows').contains(e.target)
+        || document.getElementById('details').contains(e.target)) {
+        return;
     }
 
-    if (document.getElementById('arrows').contains(e.target)) {
-        return;
+    if (detailsFocused) {
+        counter++;
     }
 
     if (counter % 2 == 0
