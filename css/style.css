@@ -204,20 +204,33 @@ a .btn-back {
     text-align: center;
 }
 
+.tags-wrapper .btn-tag {
+    margin-right: 5px;
+}
+
 .btn-tag {
-    background-color: #007bff;
-    line-height: 18px;
+    outline-color: red;
+    line-height: 20px;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 10px;
-    color: white;
     height: 40px;
+    /* border: 1px solid #a0a0a0; */
+    color: #a0a0a0;
 }
 
 .btn-tag:hover {
+    /* background-color: #677a80; */
+    color: black;
+    border: 1px solid black;
+}
+
+.btn-tag-clicked {
     background-color: #429dff;
-    color: white;
+    color: white !important;
+    border: none;
+    border: 1px solid #429dff !important;
 }
 
 .search-box {
@@ -242,20 +255,18 @@ a .btn-back {
 
 .navbar .number {
     position: absolute;
-    right: 0;
     top: 0;
+    right: 0;
     text-align: center;
-    margin-left: 6px;
-    background-color: red;
-    width: 16px;
-    height: 16px;
+    background-color: #007bff;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     color: white;
     font-size: 11px;
-    line-height: 0.95rem;
     cursor: pointer;
+    transition: 0.3s;
 }
-
 
 .navbar-btn {
     color: black;
@@ -292,18 +303,9 @@ a .btn-back {
     animation-duration: 0.4s;
 }
 
-.btn-dropdown-item {
-    padding-bottom: 10px;
-    -webkit-animation-duration: 0.3s;
-    animation-duration: 0.3s;
-}
-
-.btn-dropdown-item .btn {
-    font-size: 12px;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    line-height: 18px;
+.btn-dropdown .btn-tag {
+    line-height: 20px !important;
+    margin-bottom: 5px;
 }
 
 .navbar-content {
@@ -428,7 +430,7 @@ a .btn-back {
 
 .details-arrows {
     position: fixed;
-    z-index: 5000;
+    z-index: 6000;
     color: black;
     top: 45%;
 }
@@ -472,4 +474,13 @@ a .btn-back {
     .card-details {
         min-width: 320px;
     }
+}
+
+#settingsContent .btn-dropdown-item {
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 18px;
+    margin-bottom: 10px;
 }

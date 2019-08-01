@@ -74,21 +74,8 @@ function loadDetails(id) {
 $(document).ready(function() {
     var detailsContainer = $('.details-container');
 
-    $('.details-arrows .arrow-left').on('click', function() {
-        moveLeft();
-    });
-
-    $('.details-arrows .arrow-right').on('click', function() {
-        moveRight();
-    });
-
-    $('.details-close').on('click', function() {
-        closeDetailsContainer();
-        counter++;
-    });
-
     $('.card-container .card-title').on('click', function(e) {
-        if (detailsFocused) {
+        if ($(window).width() <= 768 || detailsFocused) {
             return;
         }
 
@@ -107,6 +94,19 @@ $(document).ready(function() {
         $('.card-container').css('filter', 'blur(6px)');
         detailsContainer.show();
         detailsFocused = true;
+    });
+
+    $('.details-arrows .arrow-left').on('click', function() {
+        moveLeft();
+    });
+
+    $('.details-arrows .arrow-right').on('click', function() {
+        moveRight();
+    });
+
+    $('.details-close').on('click', function() {
+        closeDetailsContainer();
+        counter++;
     });
 });
 

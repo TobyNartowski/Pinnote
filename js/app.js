@@ -1,3 +1,5 @@
+var tagEnabled = null;
+
 // Navbar tags
 var navbarTagsWidth = 0;
 function checkTagsWidth() {
@@ -5,6 +7,8 @@ function checkTagsWidth() {
     var navbarTags = $('.tags-wrapper');
 
     if ($(window).width() <= 768) {
+        checkTagNumber();
+        $('.tags-wrapper span').appendTo($('#filterContent .btn-dropdown'));
         navbarFilter.show();
         navbarTags.hide();
     } else {
@@ -13,9 +17,12 @@ function checkTagsWidth() {
         }
 
         if ((navbarTagsWidth + 305.0) > $(window).width() - 150.0) {
+            $('.tags-wrapper span').appendTo($('#filterContent .btn-dropdown'));
+            checkTagNumber();
             navbarFilter.show();
             navbarTags.hide();
         } else {
+            $('#filterContent .btn-dropdown span').appendTo($('.tags-wrapper'));
             navbarFilter.hide();
             navbarTags.show();
         }
@@ -33,6 +40,29 @@ function toggleDropdown(e, b, c) {
         e.show();
         c.addClass('fa-times');
     }
+}
+
+function checkTagNumber() {
+    if (tagEnabled == null) {
+        $('#navbarFilter .number').hide();
+    } else {
+        $('#navbarFilter .number').show();
+    }
+}
+
+function checkTags(e) {
+    var button = $(e.target);
+    if (button.hasClass('btn-tag-clicked')) {
+        button.removeClass('btn-tag-clicked');
+        tagEnabled = null;
+    } else {
+        button.addClass('btn-tag-clicked');
+        if (tagEnabled != null) {
+            $('#' + tagEnabled).removeClass('btn-tag-clicked');
+        }
+        tagEnabled = e.target.id;
+    }
+    checkTagNumber();
 }
 
 $(document).ready(function() {
@@ -65,13 +95,6 @@ $(document).ready(function() {
         filterEnabled = !filterEnabled;
     });
 
-    var filterContentDelay = 0.05;
-    $('#filterContent .btn-dropdown-item').each(function() {
-        $(this).css('animation-delay', filterContentDelay.toString() + 's');
-        filterContentDelay += 0.10;
-    });
-
-
     $(document).on('click', function(e) {
         // Settings button
         if (settingsEnabled === true
@@ -88,5 +111,14 @@ $(document).ready(function() {
                 toggleDropdown($('#filterContent'), filterEnabled, $('#filterIcon'));
                 filterEnabled = !filterEnabled;
         }
+    });
+
+    // Tags buttons
+    $('.tags-wrapper .btn').on('click', function(e) {
+        checkTags(e);
+    });
+
+    $('.btn-dropdown .btn').on('click', function(e) {
+        checkTags(e);
     });
 });
