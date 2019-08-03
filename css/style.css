@@ -97,7 +97,7 @@ a:hover {
     z-index: 0;
 }
 
-.btn-back {
+.btn-hover {
     margin: 20px;
     border-radius: 100%;
     width: 40px;
@@ -105,11 +105,11 @@ a:hover {
     transition: 0.2s;
 }
 
-a .btn-back {
+a .btn-hover {
     color: #212529;
 }
 
-.btn-back:hover {
+.btn-hover:hover {
     background-color: #f6f6f6;
     color: #007bff;
 }
@@ -511,4 +511,90 @@ body.preloader-site {
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 120px;
+}
+
+/* New card */
+.new-container > .card {
+    width: 50%;
+}
+
+@media (max-width: 768px) {
+    .new-container > .card {
+        width: 80%;
+    }
+}
+
+.new-card-button {
+    z-index: 6000;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 32px;
+}
+
+.h3-input {
+    border: none;
+    font-size: 2rem;
+    font-weight: 700;
+    color: black;
+    width: 100%;
+}
+
+.h3-input:focus {
+    color: black;
+}
+
+.h3-input::placeholder {
+    color: #a0a0a0;
+}
+
+.h5-input {
+    border: none;
+    font-size: 1.25rem;
+    color: red;
+    width: 100%;
+    height: 35px;
+}
+
+.h5-input:focus {
+    color: black;
+}
+
+.h5-input::placeholder {
+    color: #a0a0a0;
+}
+
+.tags-input-wrapper {
+    display: flex;
+    width: 100%;
+    cursor: text;
+}
+
+.tags-input {
+    width: 128px;
+}
+
+.tags-prepend .btn {
+    border: 0;
+    margin: 0;
+    font-size: 16px;
+    color: #007bff;
+    font-weight: 400;
+    padding-right: 5px;
+    padding: 0px 5px 0px;
+    margin-top: 8px;
+}
+
+.tags-prepend .btn:hover {
+    background-color: #101010;
+    color: white
+}
+
+.already-exists {
+    color: red !important;
+}
+
+.new-container textarea {
+    font-size: 24px;
+    resize: none;
 }
