@@ -216,21 +216,16 @@ a .btn-hover {
     letter-spacing: 2px;
     font-size: 10px;
     height: 40px;
-    /* border: 1px solid #a0a0a0; */
     color: #a0a0a0;
 }
 
 .btn-tag:hover {
-    /* background-color: #677a80; */
     color: black;
-    border: 1px solid black;
 }
 
 .btn-tag-clicked {
     background-color: #429dff;
     color: white !important;
-    border: none;
-    border: 1px solid #429dff !important;
 }
 
 .search-box {
@@ -488,7 +483,7 @@ a .btn-hover {
 }
 
 /* Preloader */
-body.preloader-site {
+.preloader-site {
     overflow: hidden;
 }
 
@@ -553,7 +548,7 @@ body.preloader-site {
     font-size: 1.25rem;
     color: red;
     width: 100%;
-    height: 35px;
+    height: 36px;
 }
 
 .h5-input:focus {
@@ -595,6 +590,16 @@ body.preloader-site {
 }
 
 .new-container textarea {
-    font-size: 24px;
+    font-size: 18px;
     resize: none;
+}
+
+.new-container > .card {
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+}
+
+.new-card-button {
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
 }

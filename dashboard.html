@@ -31,10 +31,11 @@
     <!-- Custom Javascript -->
     <script src="js/preloader.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/details.js"></script>
+    <script src="js/card.js"></script>
     <script src="js/tags.js"></script>
 </head>
-<body>
+<body class="preloader-site">
+    <!-- Preloader -->
     <div class="preloader-wrapper">
         <div class="preloader animated fadeIn">
             <img src="img/preloader.gif" alt="Loading...">
@@ -103,39 +104,9 @@
     </nav>
 
     <!-- New card icon -->
-    <div class="new-card-button">
-        <a href="#">
-            <div class="navbar-btn d-flex justify-content-center align-items-center">
-                <i class="fas fa-plus"></i>
-            </div>
-        </a>
-    </div>
-
-    <!-- New card form -->
-    <!-- TODO: finish that motherfucker -->
-    <div class="new-container">
-        <div class="card card-details details-close">
-            <div class="card-close">
-                <i class="fas fa-times"></i>
-            </div>
-            <div class="card-body">
-                <form class="form-validated" action="dashboard.html" novalidate>
-                    <div class="form-group input-group input-group-seamless">
-                        <input type="text" class="h3-input" placeholder="Great title" autocomplete="off">
-                    </div>
-                    <div class="tags-input-wrapper form-group input-group input-group-seamless">
-                        <div class="tags-prepend">
-                        </div>
-                        <input type="text" class="h5-input tags-input" placeholder="+ Add tag" autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" rows="5"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-login btn-block btn-pill" value="Add a new note" />
-                    </div>
-                </form>
-            </div>
+    <div class="new-card-button animated">
+        <div class="navbar-btn d-flex justify-content-center align-items-center">
+            <i class="fas fa-plus"></i>
         </div>
     </div>
 
@@ -283,6 +254,34 @@
         </div>
     </div>
 
+    <!-- New card form -->
+    <div id="new" class="new-container hidden">
+        <div class="card card-details animated fadeIn">
+            <div class="card-close details-close">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="card-body">
+                <form class="form-validated" action="dashboard.html" novalidate>
+                    <div class="form-group input-group input-group-seamless">
+                        <input type="text" class="h3-input" placeholder="Great title" autocomplete="off">
+                    </div>
+                    <div class="tags-input-wrapper form-group input-group input-group-seamless">
+                        <div class="tags-prepend">
+                        </div>
+                        <input type="text" class="h5-input tags-input" placeholder="+ Add tag" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-login btn-block btn-pill" value="Add a new note" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Details container -->
     <div class="details-container hidden">
         <div id="arrows" class="details-arrows d-flex">
             <div class="btn-hover arrow-left d-flex justify-content-center align-items-center animated slideInLeft">
