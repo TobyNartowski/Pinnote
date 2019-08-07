@@ -202,6 +202,8 @@ a .btn-hover {
     min-height: 40px;
     overflow: hidden;
     text-align: center;
+    cursor: default;
+    margin-right: 2px;
 }
 
 .tags-wrapper .btn-tag {
@@ -592,6 +594,7 @@ a .btn-hover {
 .new-container textarea {
     font-size: 18px;
     resize: none;
+    border: 0;
 }
 
 .new-container > .card {

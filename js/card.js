@@ -1,6 +1,7 @@
 var cardFocused = false;
 var cardLoaded = 0;
 var counter = 0;
+var timeTs = 0;
 
 var eventHandler = function(e) {
    e.preventDefault();
@@ -118,6 +119,10 @@ $(document).ready(function() {
         if ($(window).width() <= 768 || cardFocused) {
             return;
         }
+        var timeDx = Math.abs(e.timeStamp - timeTs);
+        if (timeDx !== 0 && timeDx < 200) {
+            return;
+        }
 
         cardLoaded = e.target.closest('.note-card').id;
         disableContainer();
@@ -128,6 +133,7 @@ $(document).ready(function() {
         detailsContainer.show();
         hideNewButton();
         cardFocused = true;
+        timeTs = e.timeStamp;
     });
 
     $('.details-arrows .arrow-left').on('click', function() {
@@ -144,13 +150,19 @@ $(document).ready(function() {
     });
 
     // New card buttons handlers
-    $('.new-card-button').on('click', function() {
+    $('.new-card-button').on('click', function(e) {
+        var timeDx = Math.abs(e.timeStamp - timeTs);
+        if (timeDx !== 0 && timeDx < 200) {
+            return;
+        }
         hideNewButton();
         cardFocused = true;
         disableContainer();
         $('.new-container').show();
         $('.card-container').css('filter', 'blur(6px)');
         $('#new textarea').focus();
+        timeTs = e.timeStamp;
+
     });
 
     $('.new-container .card-close').on('click', function() {
@@ -172,6 +184,12 @@ $(document).on('click', function(e) {
     if (document.getElementById('arrows').contains(e.target)
         || document.getElementById('details').contains(e.target)
         || document.getElementById('new').contains(e.target)) {
+        return;
+    }
+
+    var timeDx = Math.abs(e.timeStamp - timeTs);
+    timeTs = e.timeStamp;
+    if (timeDx !== 0 && timeDx < 200) {
         return;
     }
 
