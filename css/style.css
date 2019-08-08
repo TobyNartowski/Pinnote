@@ -451,19 +451,8 @@ a .btn-hover {
 }
 
 .disable {
-    cursor: default !important;
-}
-
-.disable-white {
-    color: white !important;
-}
-
-.disable-blue {
-    color: #007bff !important;
-}
-
-.disable-gray {
-    color: #e0e0e0 !important;
+    pointer-events: none;
+    filter: blur(6px);
 }
 
 @media (max-width: 768px) {
@@ -595,6 +584,7 @@ a .btn-hover {
     font-size: 18px;
     resize: none;
     border: 0;
+    height: 180px;
 }
 
 .new-container > .card {
@@ -603,6 +593,40 @@ a .btn-hover {
 }
 
 .new-card-button {
-    -webkit-animation-duration: 0.3s;
-    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.2s;
+    animation-duration: 0.2s;
+}
+
+.new-container .img-wrapper {
+    width: auto;
+    height: 180px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center
+}
+
+.img-wrapper > .img-input {
+    height: 100%;
+    border-radius: 10px;
+}
+
+.img-wrapper > .img-input-icon {
+    position: absolute;
+    font-size: 48px;
+    color: white;
+    display: none;
+}
+
+.img-wrapper:hover {
+    cursor: pointer;
+}
+
+.img-wrapper:hover > .img-input-icon {
+    display: block;
+}
+
+.img-wrapper:hover > .img-input {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(50%) brightness(50%);
+    transition: 0.2s;
 }

@@ -19,7 +19,6 @@ function addNewTag(value) {
 
         $('.tags-prepend button').each(function() {
             if ($(this).text() === '#' + value) {
-                console.log('xd');
                 $(this).addClass('already-exists').delay(200).queue(function(next) {
                     $(this).removeClass('already-exists');
                     next();
