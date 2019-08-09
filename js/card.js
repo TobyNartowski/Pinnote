@@ -23,7 +23,7 @@ function getImage(url) {
 }
 
 function getVideo(url) {
-    return url.match(/(http:\/\/|https:\/\/)www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}/m);
+    return url.match(/(http:\/\/|https:\/\/)www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11}\b)/m);
 }
 
 // Toggle background
@@ -122,7 +122,7 @@ function openContainer() {
             break;
         case CARD_NEW:
             $('.new-container').show();
-            $('#new textarea').focus();
+            $('#new textarea').focus().select();
             break;
     }
 }
@@ -165,17 +165,49 @@ function hideNewImage() {
 
 // Check for image or video content
 function checkNewContent(content) {
-    // var imageUrl = getImage(content)[0];
-    // var videoUrl = getVideo(content)[0];
-
     if (imageUrl = getImage(content)) {
-        $('#new .img-wrapper').show();
-        $('#new .img-wrapper .img-input').attr('src', imageUrl[0]).attr('value', imageUrl[0]);
+        $('#new .img-wrapper .img-input')
+            .attr('src', imageUrl[0])
+            .attr('value', imageUrl[0])
+            .on('load', function(e) {
+                $('#new .img-wrapper').show();
+            }).on('error', function(e) {
+                hideNewImage();
+            });
     } else if (videoUrl = getVideo(content)) {
-        $('#new .img-wrapper').show();
-        $('#new .img-wrapper .img-input').attr('src', 'img/misc/youtube.png').attr('value', videoUrl[0]);
+            var img = new Image();
+            img.src = 'http://img.youtube.com/vi/' + videoUrl[2] + '/mqdefault.jpg';
+            img.onload = function() {
+                if (img.width === 320) {
+                    $('#new .img-wrapper .img-input')
+                        .attr('src', img.src)
+                        .attr('value', videoUrl[0])
+                        .on('load', function() {
+                            $('#new .img-wrapper').show();
+                        });
+                } else {
+                    hideNewImage();
+                }
+            }
     } else {
         hideNewImage();
+    }
+}
+
+function openNewCardContainer() {
+    if (which === CARD_NONE) {
+        which = CARD_NEW;
+        openContainer();
+    }
+}
+
+function openDetailsContainer(id) {
+    if (which === CARD_NONE) {
+        which = CARD_DETAILS;
+        cardLoaded = id;
+
+        loadDetailsData(cardLoaded);
+        openContainer();
     }
 }
 
@@ -186,13 +218,7 @@ $(document).ready(function() {
             return;
         }
 
-        if (which === CARD_NONE) {
-            which = CARD_DETAILS;
-            cardLoaded = e.target.closest('.note-card').id;
-
-            loadDetailsData(cardLoaded);
-            openContainer();
-        }
+        openDetailsContainer(e.target.closest('.note-card').id);
     });
 
     $('.details-arrows .arrow-left').on('click', function() {
@@ -209,10 +235,7 @@ $(document).ready(function() {
 
     // New card handlers
     $('.new-card-button').on('click', function(e) {
-        if (which === CARD_NONE) {
-            which = CARD_NEW;
-            openContainer();
-        }
+        openNewCardContainer();
     });
 
     $('#new textarea').keydown(function(e) {
@@ -240,8 +263,8 @@ $(document).ready(function() {
 
 // Keyboard handling
 $(document).keydown(function(e) {
-    if (e.which === 192) {
-        checkNewContent($('#new textarea').val());
+    if (e.which >= 65 && e.which <= 90 && !$('.search-box input').is(':focus')) {
+        openNewCardContainer();
     }
 
     if (which === CARD_DETAILS) {
@@ -259,5 +282,12 @@ $(document).keydown(function(e) {
         case 27:
             closeContainer();
             break;
+    }
+});
+
+$(document).on('paste', function(e) {
+    if (e.originalEvent.clipboardData) {
+        var cliboardContent = e.originalEvent.clipboardData.getData('text/plain');
+        checkNewContent(cliboardContent);
     }
 });
