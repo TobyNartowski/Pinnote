@@ -255,7 +255,8 @@
     </div>
 
     <!-- New card form -->
-    <div id="new" class="new-container hidden">
+    <!-- TODO: ADD HIDDEN TO .NEW-CONTAINER -->
+    <div id="new" class="new-container">
         <div class="card card-details animated fadeIn">
             <div class="card-close details-close">
                 <i class="fas fa-times"></i>
@@ -272,9 +273,11 @@
                     </div>
                     <div class="form-group d-flex justify-content-center">
                         <textarea class="form-control" rows="5"></textarea>
-                        <div class="img-wrapper d-flex hidden">
-                            <img class="img-input" src="" />
-                            <i class="img-input-icon fas fa-times-circle"></i>
+                        <div class="img-wrapper hidden">
+                            <div class="d-flex ml-3 w-100 h-100 justify-content-center align-items-center">
+                                <img class="img-input" src="" value=""/>
+                                <i class="img-input-icon fas fa-times-circle hidden"></i>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">

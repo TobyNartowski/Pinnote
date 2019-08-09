@@ -601,32 +601,31 @@ a .btn-hover {
     width: auto;
     height: 180px;
     border-radius: 10px;
-    align-items: center;
-    justify-content: center
 }
 
-.img-wrapper > .img-input {
+.img-wrapper .img-input {
+    width: 180px;
     height: 100%;
     border-radius: 10px;
+    object-fit: contain;
 }
 
-.img-wrapper > .img-input-icon {
+.img-wrapper .img-input-icon {
     position: absolute;
     font-size: 48px;
     color: white;
-    display: none;
 }
 
 .img-wrapper:hover {
     cursor: pointer;
 }
 
-.img-wrapper:hover > .img-input-icon {
+.img-wrapper:hover .img-input-icon {
     display: block;
 }
 
-.img-wrapper:hover > .img-input {
-    -webkit-filter: grayscale(100%);
+.img-wrapper:hover .img-input {
     filter: grayscale(50%) brightness(50%);
     transition: 0.2s;
+    background-color: #f0f0f0;
 }

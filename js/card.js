@@ -18,8 +18,12 @@ function getYoutubeId(url) {
 }
 
 // Check if url is a image
-function checkImgUrl(url) {
-    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+function getImage(url) {
+    return url.match(/(http:\/\/|https:\/\/)(.*)\.(jpeg|jpg|gif|png)/m);
+}
+
+function getVideo(url) {
+    return url.match(/(http:\/\/|https:\/\/)www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}/m);
 }
 
 // Toggle background
@@ -153,6 +157,27 @@ function closeContainer() {
 
 }
 
+// Hide new image or video
+function hideNewImage() {
+    $('#new .img-wrapper').hide();
+    $('#new .img-wrapper .img-input').attr('src', '').attr('value', '');
+}
+
+// Check for image or video content
+function checkNewContent(content) {
+    // var imageUrl = getImage(content)[0];
+    // var videoUrl = getVideo(content)[0];
+
+    if (imageUrl = getImage(content)) {
+        $('#new .img-wrapper').show();
+        $('#new .img-wrapper .img-input').attr('src', imageUrl[0]).attr('value', imageUrl[0]);
+    } else if (videoUrl = getVideo(content)) {
+        $('#new .img-wrapper').show();
+        $('#new .img-wrapper .img-input').attr('src', 'img/misc/youtube.png').attr('value', videoUrl[0]);
+    } else {
+        hideNewImage();
+    }
+}
 
 $(document).ready(function() {
     // Details handlers
@@ -192,9 +217,14 @@ $(document).ready(function() {
 
     $('#new textarea').keydown(function(e) {
         if (e.keyCode === 9) {
+            checkNewContent($('#new textarea').val());
             $('#new .h3-input').focus();
             e.preventDefault();
         }
+    });
+
+    $('#new .img-wrapper').on('click', function() {
+        hideNewImage();
     });
 
     $(document).on('click', function(e) {
@@ -210,6 +240,10 @@ $(document).ready(function() {
 
 // Keyboard handling
 $(document).keydown(function(e) {
+    if (e.which === 192) {
+        checkNewContent($('#new textarea').val());
+    }
+
     if (which === CARD_DETAILS) {
         switch (e.which) {
             case 37:
