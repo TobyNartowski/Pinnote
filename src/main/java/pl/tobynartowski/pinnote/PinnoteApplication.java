@@ -9,5 +9,4 @@ public class PinnoteApplication {
     public static void main(String[] args) {
         SpringApplication.run(PinnoteApplication.class, args);
     }
-
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,15 +26,15 @@
     <script src="https://unpkg.com/shards-ui@latest/dist/js/shards.min.js"></script>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
 
     <!-- Custom Javascript -->
-    <script src="js/form.js"></script>
+    <script src="/js/form.js"></script>
 </head>
 <body>
     <!-- Back icon -->
     <div class="pos-top animated fadeInLeft">
-        <a href="index.html">
+        <a th:href="@{/}">
             <div class="btn-hover d-flex justify-content-center align-items-center">
                 <i class="fas fa-arrow-left"></i>
             </div>
@@ -44,7 +44,7 @@
     <!-- Register card -->
     <div class="container h-100 animated fadeIn pos-bottom">
         <div class="d-flex justify-content-center mb-4 center-img">
-            <img src="img/logo_pin_color.png" height="128px" onmousedown="return false;"/>
+            <img src="/img/logo_pin_color.png" height="128px" onmousedown="return false;"/>
         </div>
         <div class="d-flex justify-content-center h-100">
             <div class="card login-card">
@@ -52,7 +52,7 @@
                     <h2 class="card-title">Create an account</h2>
                     <h6 class="card-subtitle mb-3 mt-2">it takes only a few seconds!</h6>
 
-                    <form class="form-validated" action="#" novalidate>
+                    <form class="form-validated" th:action="@{/}" novalidate>
                         <div class="form-group input-group input-group-seamless">
                             <div class="input-group-prepend inline">
                                 <div class="input-group-text">

@@ -66,7 +66,6 @@ function checkTags(e) {
 }
 
 $(document).ready(function() {
-    //  TODO: check after new tag
     checkTagsWidth();
     $(window).resize(checkTagsWidth);
 
