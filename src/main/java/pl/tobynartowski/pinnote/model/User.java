@@ -1,0 +1,75 @@
+package pl.tobynartowski.pinnote.model;
+
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
+@Entity
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 6074119829030852623L;
+
+    @Id
+    @GeneratedValue
+    @Column(columnDefinition = "BINARY(16)")
+    private UUID id;
+
+    @NotBlank
+    @Email
+    @Size(max = 64)
+    private String email;
+
+    @NotBlank
+    @Size(min = 5, max = 64)
+    private String password;
+
+    @OneToMany(orphanRemoval = true)
+    private Set<Note> notes = new HashSet<>();
+
+    private String role = "USER";
+
+    public User() {}
+
+    public User(@NotBlank @Email @Size(max = 64) String email, @NotBlank @Size(min = 5, max = 64) String password, Set<Note> notes) {
+        this.email = email;
+        this.password = password;
+        this.notes = notes;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(Set<Note> notes) {
+        this.notes = notes;
+    }
+}
