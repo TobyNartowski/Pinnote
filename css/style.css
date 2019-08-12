@@ -164,7 +164,7 @@ a .btn-hover {
     line-height: normal;
 }
 
-.note-card .card-text {
+.card-conatiner .note-card .card-text {
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -394,6 +394,28 @@ a .btn-hover {
     height: auto;
     min-height: 256px;
     max-height: 90vh;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.card-details .note-card::-webkit-scrollbar {
+    display: none;
+}
+
+.card-details .card-content > .card-media {
+    display: flex;
+    justify-content: center;
+}
+
+.card-details .card-content > .card-text {
+    text-align: justify;
+    padding-top: 10px;
+    font-size: 1.30rem;
+}
+
+.card-details .card-content > .card-media {
+    padding-top: 10px;
 }
 
 .card-content .card-img {

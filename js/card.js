@@ -4,6 +4,7 @@ const CARD_NEW = 2;
 
 var which = CARD_NONE;
 var cardLoaded = CARD_NONE;
+var cardSwitchMutex = false;
 
 // Get youtube video id
 function getYoutubeId(url) {
@@ -60,52 +61,72 @@ function loadDetailsData(id) {
     var target = $('#' + id);
     var targetTitle = target.find('.card-title').html();
     var targetSubtitle = target.find('.card-subtitle > a').clone(true).append(' ');
-    var targetContent;
+    var targetText = target.find('.card-text');
+    var targetMedia = null;
 
     if (target.hasClass('note-video')) {
-        targetContent = $('<iframe>', {
+        targetMedia = $('<iframe>', {
             width: 640,
             height: 360,
             frameborder: '0',
             src: 'http://www.youtube.com/embed/' + getYoutubeId(target.find('.video-content').attr('href'))
         });
     } else if (target.hasClass('note-img')) {
-        targetContent = target.find('.card-img');
-    } else {
-        targetContent = target.find('.card-text');
+        targetMedia = target.find('.card-img');
     }
 
     details.find('.card-title').text(targetTitle);
     details.find('.card-subtitle').html(targetSubtitle);
-    details.find('.card-content').html(targetContent.clone(false));
+    details.find('.card-content > .card-text').html(targetText.clone(false));
+    if (targetMedia) {
+        details.find('.card-content > .card-media').html(targetMedia.clone(false));
+    } else {
+        details.find('.card-content > .card-media').html('');
+    }
 }
 
 // Switch card to the previous one
 function moveDetailsLeft() {
+    if (cardSwitchMutex) {
+        return;
+    }
+    cardSwitchMutex = true;
+
     cardLoaded--;
     if (cardLoaded === 0) {
         cardLoaded = $('.card-container .card-title').length;
     }
     $('.card-details > .note-card').addClass('fadeOutRight')
         .delay(200).queue(function(next) {
-            $(this).removeClass('fadeOutRight fadeInRight');
+            $(this).removeClass('fadeOutLeft fadeOutRight');
             loadDetailsData(cardLoaded);
-            $(this).addClass('fadeInLeft');
+            $(this).addClass('fadeInLeft').delay(300).promise().done(function() {
+                $(this).removeClass('fadeIn fadeInLeft');
+            });
+            cardSwitchMutex = false;
             next();
         });
 }
 
 // Switch card to the next one
 function moveDetailsRight() {
+    if (cardSwitchMutex) {
+        return;
+    }
+    cardSwitchMutex = true;
+
     cardLoaded++;
     if (cardLoaded === $('.card-container .card-title').length + 1) {
         cardLoaded = 1;
     }
     $('.card-details > .note-card').addClass('fadeOutLeft')
         .delay(200).queue(function(next) {
-            $(this).removeClass('fadeOutLeft fadeInLeft');
+            $(this).removeClass('fadeOutLeft fadeOutRight');
             loadDetailsData(cardLoaded);
-            $(this).addClass('fadeInRight');
+            $(this).addClass('fadeInRight').delay(300).promise().done(function() {
+                $(this).removeClass('fadeIn fadeInRight');
+            });
+            cardSwitchMutex = false;
             next();
         });
 }
@@ -117,7 +138,7 @@ function openContainer() {
 
     switch (which) {
         case CARD_DETAILS:
-            $('.card-details > .note-card').removeClass('fadeInRight fadeInLeft');
+            $('.card-details > .note-card').removeClass('fadeInRight fadeInLeft').addClass('fadeIn');
             $('.details-container').show();
             break;
         case CARD_NEW:
@@ -140,7 +161,8 @@ function closeContainer() {
                 $('.details-arrows .arrow-right').removeClass('fadeOutRight').addClass('slideInRight');
                 $('.details-container').hide();
                 $('.card-details > .note-card').removeClass('fadeOut');
-                $('#details .card-content').html('');
+                $('#details .card-content .card-media').html('');
+                $('#details .card-content .card-text').html('');
                 which = CARD_NONE;
                 next();
             });
