@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.tobynartowski.pinnote.model.User;
@@ -30,22 +31,23 @@ public class UserServiceTest {
     @Before
     public void init() {
         userService = new UserService(userRepository, passwordEncoder);
+
+        when(userRepository.save(any(User.class))).then((InvocationOnMock i) -> {
+            User user = i.getArgument(0);
+            user.setId(UUID.randomUUID());
+            return user;
+        });
     }
 
     @Test
-    public void whenRegisterUserSuccess_thenReturningUserWithId() {
-        User user = new User("johndoe@gmail.com", "password");
-        user.setId(UUID.randomUUID());
-        when(userRepository.save(any(User.class))).thenReturn(user);
-
+    public void whenRegisterUser_passedCorrectUser_thenIdIsSet() {
         User savedUser = userService.registerUser(new User("someoneelse@gmail.com", "pass"));
         assertThat(savedUser.getId()).isNotNull();
     }
 
     @Test
-    public void whenRegisterUserSuccess_thenPasswordIsHashed() {
+    public void whenRegisterUser_passedCorrectUser_thenPasswordIsHashed() {
         User user = new User("johndoe@gmail.com", "password");
-        when(userRepository.save(any(User.class))).thenReturn(user);
         when(passwordEncoder.encode(anyString())).thenReturn("{bcrypt}$2a$10$/gjHI9PY1zww76YLpYJ2DuGroZfJyXzer2Rmev/oY24B3UcJoXcAC");
 
         user = userService.registerUser(user);

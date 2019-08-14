@@ -88,4 +88,12 @@ public class Note implements Serializable {
     public void setType(NoteType type) {
         this.type = type;
     }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
 }

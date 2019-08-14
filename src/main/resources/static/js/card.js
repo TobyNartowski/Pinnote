@@ -300,10 +300,8 @@ $(document).keydown(function(e) {
         }
     }
 
-    switch (e.which) {
-        case 27:
-            closeContainer();
-            break;
+    if (e.which === 27) {
+        closeContainer();
     }
 });
 
