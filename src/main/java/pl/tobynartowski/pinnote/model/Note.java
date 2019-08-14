@@ -1,5 +1,6 @@
 package pl.tobynartowski.pinnote.model;
 
+import org.hibernate.annotations.Type;
 import pl.tobynartowski.pinnote.misc.NoteType;
 
 import javax.persistence.*;
@@ -18,7 +19,8 @@ public class Note implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column(columnDefinition = "BINARY(16)")
+    @Column(columnDefinition = "VARCHAR(36)")
+    @Type(type = "uuid-char")
     private UUID id;
 
     @NotBlank

@@ -1,16 +1,12 @@
 package pl.tobynartowski.pinnote;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.runners.Suite;
+import pl.tobynartowski.pinnote.service.UserServiceTest;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+    UserServiceTest.class
+})
 public class PinnoteApplicationTests {
-
-    @Test
-    public void contextLoads() {
-    }
-
 }

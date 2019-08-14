@@ -1,5 +1,8 @@
 package pl.tobynartowski.pinnote.model;
 
+import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -16,7 +19,8 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column(columnDefinition = "BINARY(16)")
+    @Column(columnDefinition = "VARCHAR(36)")
+    @Type(type = "uuid-char")
     private UUID id;
 
     @NotBlank
@@ -25,20 +29,19 @@ public class User implements Serializable {
     private String email;
 
     @NotBlank
-    @Size(min = 5, max = 64)
+    @Size(min = 68, max = 68)
     private String password;
 
     @OneToMany(orphanRemoval = true)
     private Set<Note> notes = new HashSet<>();
 
-    private String role = "USER";
+    private String role = "ROLE_USER";
 
     public User() {}
 
-    public User(@NotBlank @Email @Size(max = 64) String email, @NotBlank @Size(min = 5, max = 64) String password, Set<Note> notes) {
+    public User(@NotBlank @Email @Size(max = 64) String email, @NotBlank @Size(min = 5, max = 64) String password) {
         this.email = email;
         this.password = password;
-        this.notes = notes;
     }
 
     public UUID getId() {
