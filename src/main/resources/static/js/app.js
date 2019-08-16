@@ -97,7 +97,7 @@ $(document).ready(function() {
     $(document).on('click', function(e) {
         // Settings button
         if (settingsEnabled === true
-            && e.target.id != 'navbarSettings'
+            && e.target.id !== 'navbarSettings'
             && !document.getElementById('navbarSettings').contains(e.target)) {
                 toggleDropdown($('#settingsContent'), settingsEnabled, $('#settingsIcon'));
                 settingsEnabled = !settingsEnabled;
@@ -105,7 +105,7 @@ $(document).ready(function() {
 
         // Filter button
         if (filterEnabled === true
-            && e.target.id != 'navbarFilter'
+            && e.target.id !== 'navbarFilter'
             && !document.getElementById('navbarFilter').contains(e.target)) {
                 toggleDropdown($('#filterContent'), filterEnabled, $('#filterIcon'));
                 filterEnabled = !filterEnabled;
@@ -119,5 +119,10 @@ $(document).ready(function() {
 
     $('.btn-dropdown .btn').on('click', function(e) {
         checkTags(e);
+    });
+
+    // Logout
+    $('#logoutButton').on('click', function() {
+        $(this).closest($('.form-logout')).submit();
     });
 });

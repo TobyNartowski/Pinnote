@@ -266,7 +266,6 @@ a .btn-hover {
 }
 
 .navbar-btn {
-    color: black;
     float: right;
     width: 40px;
     height: 40px;
@@ -298,6 +297,10 @@ a .btn-hover {
 
     -webkit-animation-duration: 0.4s;
     animation-duration: 0.4s;
+}
+
+.btn-dropdown input {
+    -webkit-appearance: none;;
 }
 
 .btn-dropdown .btn-tag {
@@ -588,7 +591,6 @@ a .btn-hover {
     font-size: 16px;
     color: #007bff;
     font-weight: 400;
-    padding-right: 5px;
     padding: 0px 5px 0px;
     margin-top: 8px;
 }
@@ -650,4 +652,39 @@ a .btn-hover {
     filter: grayscale(50%) brightness(50%);
     transition: 0.2s;
     background-color: #f0f0f0;
+}
+
+/* Info modal */
+.modal-container {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    z-index: 9999;
+}
+
+.modal-container > .modal-body {
+    min-height: 128px;
+    margin-top: 2rem;
+    background: rgb(255,201,106);
+    background: linear-gradient(-90deg, rgba(255,201,106,1) 0%, rgba(255,47,21,1) 100%);
+    color: white;
+}
+.modal-container > .modal-body h3 {
+    color: white;
+    font-weight: 700;
+}
+
+.modal-container > .modal-body > .modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+}
+
+.modal-container > .modal-body > .modal-close:hover {
+    cursor: pointer;
+    color: #212529;
 }

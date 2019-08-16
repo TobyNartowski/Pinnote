@@ -53,4 +53,20 @@ public class UserServiceTest {
         user = userService.registerUser(user);
         assertThat(user.getPassword()).hasSize(68);
     }
+
+    @Test
+    public void whenIfUserExists_exists_thenReturnTrue() {
+        User user = new User("johndoe@gmail.com", "password");
+        user.setId(UUID.randomUUID());
+        when(userRepository.findByEmail(anyString())).thenReturn(user);
+
+        assertThat(userService.checkIfUserExists(user.getEmail())).isEqualTo(true);
+    }
+
+    @Test
+    public void whenIfUserExists_notExists_thenReturnTrue() {
+        when(userRepository.findByEmail(anyString())).thenReturn(null);
+
+        assertThat(userService.checkIfUserExists("someone")).isEqualTo(false);
+    }
 }

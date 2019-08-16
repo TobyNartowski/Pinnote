@@ -93,10 +93,13 @@
                             <a href="#" class="btn btn-sm btn-dark btn-block btn-pill">
                                 <i class="fas fa-moon"></i>&nbsp; Dark mode</a>
                         </div>
-                       <div class="btn-dropdown-item w-100 animated slideInRight">
-                            <a th:href="@{/}" class="btn btn-sm btn-outline-danger btn-block btn-pill">
-                                <i class="fas fa-sign-out-alt"></i>&nbsp; Logout</a>
-                        </div>
+                        <form th:action="@{/logout}" method="post" class="form-logout w-100">
+                           <div id="logoutButton" class="btn-dropdown-item w-100 animated slideInRight">
+                               <a href="#" class="btn btn-sm btn-outline-danger btn-block btn-pill">
+                                   <i class="fas fa-sign-out-alt"></i>&nbsp; Logout
+                               </a>
+                            </div>
+                        </form>
                     </div>
                 </span>
             </div>

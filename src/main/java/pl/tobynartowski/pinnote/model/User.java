@@ -25,11 +25,12 @@ public class User implements Serializable {
 
     @NotBlank
     @Email
-    @Size(max = 64)
+    @Size(max = 128)
+    @Column(unique = true)
     private String email;
 
     @NotBlank
-    @Size(min = 68, max = 68)
+    @Size(min = 6, max = 68)
     private String password;
 
     @OneToMany(orphanRemoval = true)
@@ -74,5 +75,13 @@ public class User implements Serializable {
 
     public void setNotes(Set<Note> notes) {
         this.notes = notes;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
