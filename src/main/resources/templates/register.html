@@ -35,7 +35,7 @@
 <body>
     <!-- Info modal -->
     <div th:unless="${param.error} eq null" class="modal-container animated fadeInDown">
-        <div class="modal-body card col-lg-3">
+        <div class="modal-body modal-error card col-lg-3">
             <div class="modal-close"><i class="fas fa-times fa-2x"></i></div>
             <h3>Error</h3>
             <th:block th:switch="${param.error[0]}">

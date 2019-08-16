@@ -1,6 +1,8 @@
 package pl.tobynartowski.pinnote.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,14 +25,21 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping("/")
+    @RequestMapping({"/", "/index"})
     public String index() {
+        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)) {
+            return "redirect:dashboard";
+        }
         return "index";
     }
 
     @RequestMapping("/register")
     public String register(Model model) {
         model.addAttribute("user", new User());
+        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)) {
+            return "redirect:dashboard";
+        }
+
         return "register";
     }
 
@@ -45,6 +54,7 @@ public class UserController {
                 redirectAttributes.addAttribute("error", "exists");
                 return "redirect:register";
             }
+            redirectAttributes.addAttribute("register", "success");
             return "redirect:index";
         } else {
             redirectAttributes.addAttribute("error", "other");

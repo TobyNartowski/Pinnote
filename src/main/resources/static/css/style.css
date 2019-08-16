@@ -668,10 +668,27 @@ a .btn-hover {
 .modal-container > .modal-body {
     min-height: 128px;
     margin-top: 2rem;
-    background: rgb(255,201,106);
-    background: linear-gradient(-90deg, rgba(255,201,106,1) 0%, rgba(255,47,21,1) 100%);
     color: white;
 }
+
+.modal-error {
+    background: linear-gradient(270deg, #ffc96a, #ff2f15);
+    background-size: 400% 400%;
+
+    -webkit-animation: GradientAnimation 10s ease infinite;
+    -moz-animation: GradientAnimation 10s ease infinite;
+    animation: GradientAnimation 10s ease infinite;
+}
+
+.modal-success {
+    background: linear-gradient(270deg, #87ffab, #36ff15);
+    background-size: 400% 400%;
+
+    -webkit-animation: GradientAnimation 10s ease infinite;
+    -moz-animation: GradientAnimation 10s ease infinite;
+    animation: GradientAnimation 10s ease infinite;
+}
+
 .modal-container > .modal-body h3 {
     color: white;
     font-weight: 700;
