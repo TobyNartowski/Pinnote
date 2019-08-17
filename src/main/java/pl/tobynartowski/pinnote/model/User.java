@@ -8,9 +8,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 public class User implements Serializable {
@@ -33,8 +31,8 @@ public class User implements Serializable {
     @Size(min = 6, max = 68)
     private String password;
 
-    @OneToMany(orphanRemoval = true)
-    private Set<Note> notes = new HashSet<>();
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    private List<Note> notes = new ArrayList<>();
 
     private String role = "ROLE_USER";
 
@@ -69,11 +67,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Set<Note> getNotes() {
+    public List<Note> getNotes() {
         return notes;
     }
 
-    public void setNotes(Set<Note> notes) {
+    public void setNotes(List<Note> notes) {
         this.notes = notes;
     }
 

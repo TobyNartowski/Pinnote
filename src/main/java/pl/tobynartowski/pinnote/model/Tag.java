@@ -4,7 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,7 +23,7 @@ public class Tag implements Serializable {
     private String name;
 
     @ManyToMany(mappedBy = "tags")
-    private Set<Note> notes = new HashSet<>();
+    private List<Note> notes = new ArrayList<>();
 
     public Tag(@NotBlank @Size(max = 32) String name) {
         this.name = name;
@@ -43,11 +45,11 @@ public class Tag implements Serializable {
         this.name = name;
     }
 
-    public Set<Note> getNotes() {
+    public List<Note> getNotes() {
         return notes;
     }
 
-    public void setNotes(Set<Note> notes) {
+    public void setNotes(List<Note> notes) {
         this.notes = notes;
     }
 }

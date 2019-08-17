@@ -1,3 +1,7 @@
+html {
+    height: 100%;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -496,6 +500,22 @@ a .btn-hover {
     margin-bottom: 10px;
     -webkit-animation-duration: 0.3s;
     animation-duration: 0.3s;
+}
+
+.empty-container {
+    width: 100%;
+    height: 28rem;
+    align-content: center;
+    vertical-align: center;
+}
+
+.empty-container img {
+    object-fit: contain;
+}
+
+.empty-container h1 {
+    font-weight: 700;
+    margin-bottom: 2rem;
 }
 
 /* Preloader */

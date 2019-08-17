@@ -7,6 +7,8 @@ import pl.tobynartowski.pinnote.model.User;
 import pl.tobynartowski.pinnote.repository.NoteRepository;
 import pl.tobynartowski.pinnote.repository.UserRepository;
 
+import java.util.List;
+
 @Service
 public class NoteService {
 
@@ -20,7 +22,9 @@ public class NoteService {
     }
 
     public Note addNote(User user, Note note) {
+        note.setUser(user);
         Note savedNote = noteRepository.save(note);
+
         user.getNotes().add(note);
         userRepository.save(user);
         return savedNote;
@@ -32,5 +36,10 @@ public class NoteService {
         userRepository.save(noteOwner);
 
         noteRepository.delete(note);
+    }
+
+    public List<Note> getNotesByEmail(String email) {
+        List<Note> result = noteRepository.findAllByUserEmail(email);
+        return result == null || result.isEmpty() ? null : result;
     }
 }

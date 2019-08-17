@@ -49,6 +49,7 @@
         </a>
         <div class="form-inline justify-content-center text-center">
             <div class="tags-wrapper">
+                <!--
                 <span id="t1" class="btn btn-tag btn-pill btn-sm navbar-text animated fadeInRight">
                     #landscape
                 </span>
@@ -64,6 +65,7 @@
                 <span id="t5" class="btn btn-tag btn-pill btn-sm navbar-text animated fadeInRight">
                     #secondthing
                 </span>
+                -->
             </div>
             <div id="navbarFilter" class="navbar-filter input-group input-group-seamless mr-2">
                 <span class="number animated bounceIn" onselectstart="return false"></span>
@@ -115,7 +117,10 @@
 
     <!-- Cards -->
     <div class="container card-container">
-        <div class="row mb-5">
+        <div class="row mb-5 h-100">
+
+
+            <!--
             <div class="col-lg-4 col-md-6">
                 <div id="1" class="card note-card note-text">
                     <a href="#" class="card-close">
@@ -273,6 +278,25 @@
                     </div>
                 </div>
             </div>
+            -->
+
+            <div th:if="${notes} eq null" class="empty-container d-flex justify-content-center">
+                <div class="row h-100 align-self-center align-items-center">
+                    <div class="col-lg-6">
+                        <img class="img-fluid mb-5 h-100" src="/img/misc/empty.jpg" onmousedown="return false;" />
+                    </div>
+                    <div class="col-lg-6">
+                        <h1>There's nothing here...</h1>
+                        <h3 class="mb-4">Add your first note</h3>
+                        <ul class="list-group">
+                            <li class="list-group-item mb-4">Click on + button</li>
+                            <li class="list-group-item mb-4">Paste something with CTRL + V</li>
+                            <li class="list-group-item mb-4">Just start typing...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 

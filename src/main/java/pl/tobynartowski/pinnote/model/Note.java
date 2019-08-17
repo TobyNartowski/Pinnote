@@ -8,9 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 public class Note implements Serializable {
@@ -38,7 +36,10 @@ public class Note implements Serializable {
     private NoteType type;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Tag> tags = new HashSet<>();
+    private List<Tag> tags = new ArrayList<>();
+
+    @ManyToOne
+    private User user;
 
     public Note() {}
 
@@ -89,11 +90,19 @@ public class Note implements Serializable {
         this.type = type;
     }
 
-    public Set<Tag> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(Set<Tag> tags) {
+    public void setTags(List<Tag> tags) {
         this.tags = tags;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -12,10 +12,12 @@ import pl.tobynartowski.pinnote.model.User;
 import pl.tobynartowski.pinnote.repository.NoteRepository;
 import pl.tobynartowski.pinnote.repository.UserRepository;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -67,5 +69,18 @@ public class NoteServiceTest {
 
         noteService.removeNote(note);
         assertThat(user.getNotes()).doesNotContain(note);
+    }
+
+    @Test
+    public void whenGetNotesByEmail_passedCorrectEmail_thenReturnListOfNotes() {
+        User user = new User("johndoe@gmail.com", "password");
+        user.setNotes(Arrays.asList(
+                new Note("Title", "Content", null, NoteType.TEXT),
+                new Note("Ttitle2", "Second content", null, NoteType.TEXT)
+        ));
+
+        when(noteRepository.findAllByUserEmail(anyString())).thenReturn(user.getNotes());
+
+        assertThat(noteService.getNotesByEmail(user.getEmail())).isEqualTo(user.getNotes());
     }
 }
