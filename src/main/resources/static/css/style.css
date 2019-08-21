@@ -7,6 +7,10 @@ body {
     font-weight: 400;
 }
 
+h1, h2, h3, h4, h5, h6, p, .btn {
+    font-family: 'Open Sans', sans-serif;
+}
+
 p {
     font-weight: 300;
 }
@@ -607,21 +611,30 @@ a .btn-hover {
 
 .tags-prepend .btn {
     border: 0;
-    margin: 0;
+    margin: 8px 0 0 0;
     font-size: 16px;
     color: #007bff;
     font-weight: 400;
-    padding: 0px 5px 0px;
-    margin-top: 8px;
+    padding: 0 5px 0;
 }
 
 .tags-prepend .btn:hover {
-    background-color: #101010;
+    background-color: #007bff;
     color: white
 }
 
 .already-exists {
     color: red !important;
+}
+
+.tags-info {
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    color: red;
+    padding-left: 5px;
 }
 
 .new-container textarea {

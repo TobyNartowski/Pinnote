@@ -25,6 +25,8 @@ public class Tag implements Serializable {
     @ManyToMany(mappedBy = "tags")
     private List<Note> notes = new ArrayList<>();
 
+    public Tag() {}
+
     public Tag(@NotBlank @Size(max = 32) String name) {
         this.name = name;
     }

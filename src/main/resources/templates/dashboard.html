@@ -117,9 +117,7 @@
 
     <!-- Cards -->
     <div class="container card-container">
-        <div class="row mb-5 h-100">
-
-
+        <div th:unless="${notes} eq null" class="row mb-5 h-100">
             <!--
             <div class="col-lg-4 col-md-6">
                 <div id="1" class="card note-card note-text">
@@ -279,24 +277,23 @@
                 </div>
             </div>
             -->
+        </div>
 
-            <div th:if="${notes} eq null" class="empty-container d-flex justify-content-center">
-                <div class="row h-100 align-self-center align-items-center">
-                    <div class="col-lg-6">
-                        <img class="img-fluid mb-5 h-100" src="/img/misc/empty.jpg" onmousedown="return false;" />
-                    </div>
-                    <div class="col-lg-6">
-                        <h1>There's nothing here...</h1>
-                        <h3 class="mb-4">Add your first note</h3>
-                        <ul class="list-group">
-                            <li class="list-group-item mb-4">Click on + button</li>
-                            <li class="list-group-item mb-4">Paste something with CTRL + V</li>
-                            <li class="list-group-item mb-4">Just start typing...</li>
-                        </ul>
-                    </div>
+        <div th:if="${notes} eq null" class="empty-container d-flex justify-content-center">
+            <div class="row h-100 align-self-center align-items-center">
+                <div class="col-lg-6">
+                    <img class="img-fluid mb-5 h-100" src="/img/misc/empty.jpg" onmousedown="return false;" />
+                </div>
+                <div class="col-lg-6">
+                    <h1>There's nothing here...</h1>
+                    <h3 class="mb-4">Add your first note</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item mb-4">Click on + button</li>
+                        <li class="list-group-item mb-4">Paste something with CTRL + V</li>
+                        <li class="list-group-item mb-4">Just start typing...</li>
+                    </ul>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -307,20 +304,29 @@
                 <i class="fas fa-times"></i>
             </div>
             <div class="card-body">
-                <form class="form-validated" action="dashboard.html" novalidate>
+                <form class="form-validated" th:action="@{/dashboard/add}" method="post" th:object="${note}" novalidate>
+                    <input id="new-type" th:field="*{type}" type="hidden">
+                    <input id="new-media" th:field="*{contentMedia}" type="hidden">
+
                     <div class="form-group input-group input-group-seamless">
-                        <input type="text" class="h3-input" placeholder="Great title" autocomplete="off">
+                        <input th:field="*{title}" type="text" class="h3-input" placeholder="Great title" autocomplete="off">
                     </div>
                     <div class="tags-input-wrapper form-group input-group input-group-seamless">
                         <div class="tags-prepend">
+                            <input th:each="tag, i : *{tags}" th:field="*{tags[__${i.index}__].name}" class="btn btn-outline-dark btn-sm mr-1 mb-1 hidden">
                         </div>
                         <input type="text" class="h5-input tags-input" placeholder="+ Add tag" autocomplete="off">
+                        <div class="tags-info-wrapper hidden">
+                            <div class="tags-info">
+                                Tags error
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group d-flex justify-content-center">
-                        <textarea class="form-control" rows="5"></textarea>
+                        <textarea th:field="*{contentText}" class="form-control" rows="5"></textarea>
                         <div class="img-wrapper hidden">
                             <div class="d-flex ml-3 w-100 h-100 justify-content-center align-items-center">
-                                <img class="img-input" src="" value="" />
+                                <img class="img-input" src="" />
                                 <i class="img-input-icon fas fa-times-circle hidden"></i>
                             </div>
                         </div>

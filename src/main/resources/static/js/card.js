@@ -142,8 +142,10 @@ function openContainer() {
             $('.details-container').show();
             break;
         case CARD_NEW:
+            let textArea = $('#new textarea');
             $('.new-container').show();
-            $('#new textarea').focus().select();
+            textArea.focus().select();
+            checkNewContent(textArea.val());
             break;
     }
 }
@@ -181,23 +183,30 @@ function closeContainer() {
 
 // Hide new image or video
 function hideNewImage() {
+    $('#new-media').val('');
+    $('#new-type').val('TEXT');
     $('#new .img-wrapper').hide();
     $('#new .img-wrapper .img-input').attr('src', '').attr('value', '');
 }
 
 // Check for image or video content
 function checkNewContent(content) {
-    if (imageUrl = getImage(content)) {
+    let imageUrl = getImage(content);
+    let videoUrl = getVideo(content);
+
+    if (imageUrl) {
         $('#new .img-wrapper .img-input')
             .attr('src', imageUrl[0])
             .attr('value', imageUrl[0])
             .on('load', function(e) {
                 $('#new .img-wrapper').show();
+                $('#new-type').val('IMG');
+                $('#new-media').val(imageUrl[0]);
             }).on('error', function(e) {
                 hideNewImage();
             });
-    } else if (videoUrl = getVideo(content)) {
-            var img = new Image();
+    } else if (videoUrl) {
+            let img = new Image();
             img.src = 'http://img.youtube.com/vi/' + videoUrl[2] + '/mqdefault.jpg';
             img.onload = function() {
                 if (img.width === 320) {
@@ -206,12 +215,16 @@ function checkNewContent(content) {
                         .attr('value', videoUrl[0])
                         .on('load', function() {
                             $('#new .img-wrapper').show();
+                            $('#new-type').val('VIDEO');
+                            $('#new-media').val(videoUrl[0]);
                         });
                 } else {
                     hideNewImage();
                 }
             }
     } else {
+        $('#new-type').val('TEXT');
+        $('#new-media').val('');
         hideNewImage();
     }
 }
@@ -274,7 +287,7 @@ $(document).ready(function() {
 
     $(document).on('click', function(e) {
         if (which !== CARD_NONE) {
-            var target = $(e.target);
+            let target = $(e.target);
             if (target.hasClass('preloader-site')
                 || target.is('html') || target.is('body')) {
                     closeContainer();
@@ -306,8 +319,8 @@ $(document).keydown(function(e) {
 });
 
 $(document).on('paste', function(e) {
-    if (e.originalEvent.clipboardData) {
-        var cliboardContent = e.originalEvent.clipboardData.getData('text/plain');
-        checkNewContent(cliboardContent);
+    if (e.originalEvent.clipboardData && e.originalEvent.target.type === 'textarea') {
+        let clipboardContent = e.originalEvent.clipboardData.getData('text/plain');
+        checkNewContent(clipboardContent);
     }
 });
