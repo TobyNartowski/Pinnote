@@ -172,13 +172,22 @@ a .btn-hover {
     line-height: normal;
 }
 
-.card-conatiner .note-card .card-text {
+.card-container .note-card .card-text {
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
+}
+
+.note-card .card-subtitle {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.note-card .card-subtitle > a {
+    margin-right: 10px;
 }
 
 .card-img {
@@ -423,6 +432,7 @@ a .btn-hover {
     text-align: justify;
     padding-top: 10px;
     font-size: 1.30rem;
+    white-space: pre-wrap;
 }
 
 .card-details .card-content > .card-media {

@@ -11,7 +11,7 @@ function getYoutubeId(url) {
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
 
-    if (match && match[2].length == 11) {
+    if (match && match[2].length === 11) {
         return match[2];
     } else {
         return 'error';
@@ -56,13 +56,23 @@ function showNewButton() {
     });
 }
 
+function createTextLinks(text) {
+    return (text || "").replace(/([^\S]|^)(((https?\:\/\/)|(www\.))(\S+))/gi, function(match, space, url) {
+        let hyperlink = url;
+        if (!hyperlink.match('^https?:\/\/')) {
+            hyperlink = 'http://' + hyperlink;
+        }
+        return space + '<a href="' + hyperlink + '">' + url + '</a>';
+    });
+}
+
 function loadDetailsData(id) {
-    var details = $('.details-container');
-    var target = $('#' + id);
-    var targetTitle = target.find('.card-title').html();
-    var targetSubtitle = target.find('.card-subtitle > a').clone(true).append(' ');
-    var targetText = target.find('.card-text');
-    var targetMedia = null;
+    let details = $('.details-container');
+    let target = $('#' + id);
+    let targetTitle = target.find('.card-title').html();
+    let targetSubtitle = target.find('.card-subtitle > a').clone(true).append(' ');
+    let targetText = target.find('.card-text');
+    let targetMedia = null;
 
     if (target.hasClass('note-video')) {
         targetMedia = $('<iframe>', {
@@ -77,7 +87,7 @@ function loadDetailsData(id) {
 
     details.find('.card-title').text(targetTitle);
     details.find('.card-subtitle').html(targetSubtitle);
-    details.find('.card-content > .card-text').html(targetText.clone(false));
+    details.find('.card-content > .card-text').html(createTextLinks(targetText.clone(false).text()));
     if (targetMedia) {
         details.find('.card-content > .card-media').html(targetMedia.clone(false));
     } else {
@@ -202,7 +212,7 @@ function checkNewContent(content) {
                 $('#new .img-wrapper').show();
                 $('#new-type').val('IMG');
                 $('#new-media').val(imageUrl[0]);
-            }).on('error', function(e) {
+            }).on('error', function() {
                 hideNewImage();
             });
     } else if (videoUrl) {
@@ -247,6 +257,14 @@ function openDetailsContainer(id) {
 }
 
 $(document).ready(function() {
+    // Load video thumbnails
+    $('.note-video').each(function() {
+        let path = 'http://img.youtube.com/vi/' +
+            getYoutubeId($(this).find('.video-content').attr('href'))
+            + '/mqdefault.jpg';
+        $(this).find('.card-img').attr('src', path);
+    });
+
     // Details handlers
     $('.card-container .card-title').on('click', function(e) {
         if ($(window).width() <= 768) {
@@ -321,6 +339,6 @@ $(document).keydown(function(e) {
 $(document).on('paste', function(e) {
     if (e.originalEvent.clipboardData && e.originalEvent.target.type === 'textarea') {
         let clipboardContent = e.originalEvent.clipboardData.getData('text/plain');
-        checkNewContent(clipboardContent);
+        checkNewContent($('#new textarea').val() + clipboardContent);
     }
 });

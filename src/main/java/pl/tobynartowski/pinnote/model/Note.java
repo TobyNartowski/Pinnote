@@ -35,7 +35,7 @@ public class Note implements Serializable {
     @Enumerated(EnumType.STRING)
     private NoteType type;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Tag> tags = new ArrayList<>();
 
     @ManyToOne

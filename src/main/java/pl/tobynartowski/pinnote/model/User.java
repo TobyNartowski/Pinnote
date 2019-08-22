@@ -31,7 +31,7 @@ public class User implements Serializable {
     @Size(min = 6, max = 68)
     private String password;
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Note> notes = new ArrayList<>();
 
     private String role = "ROLE_USER";

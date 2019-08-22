@@ -277,6 +277,65 @@
                 </div>
             </div>
             -->
+
+            <div th:each="note: ${notes}" th:object="${note}" th:switch="*{type.toString()}" class="col-lg-4 col-md-6">
+                <div th:id="${noteStat.index + 1}" th:case="TEXT" class="card note-card note-text">
+                    <a href="#" class="card-close">
+                        <i class="fas fa-times"></i>
+                    </a>
+                    <div class="card-body">
+                        <h3 class="card-title" th:text="*{title}">Title</h3>
+                        <h5 class="card-subtitle mt-1">
+                            <a th:each="tag: ${note.tags}" th:object="${tag}" th:text="${tag.name}" th:href="${tag.name}">#tag</a>
+                        </h5>
+                        <p class="card-text mt-2" th:text="*{contentText}">
+                            Content
+                        </p>
+                    </div>
+                </div>
+
+                <div th:id="${noteStat.index + 1}" th:case="IMG" class="card note-card note-img">
+                    <a href="#" class="card-close close-img">
+                        <i class="fas fa-times"></i>
+                    </a>
+                    <img class="card-img" th:src="*{contentMedia}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h3 class="card-title" th:text="*{title}">Title</h3>
+                        <h5 class="card-subtitle mt-1 text">
+                            <a th:each="tag: ${note.tags}" th:object="${tag}" th:text="${tag.name}" th:href="${tag.name}">#tag</a>
+                        </h5>
+                        <div class="card-media-text hidden">
+                            <p class="card-text mt-2" th:text="*{contentText}">
+                                Content
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div th:id="${noteStat.index + 1}" th:case="VIDEO" class="card note-card note-video">
+                    <a href="#" class="card-close close-img">
+                        <i class="fas fa-times"></i>
+                    </a>
+                    <img class="card-img" src="">
+                    <div class="card-img-overlay">
+                        <h3 class="card-title" th:text="*{title}">Title</h3>
+                        <h5 class="card-subtitle mt-1 text">
+                            <a th:each="tag: ${note.tags}" th:object="${tag}" th:text="${tag.name}" th:href="${tag.name}">#tag</a>
+                        </h5>
+                        <div class="card-media-text hidden">
+                            <p class="card-text mt-2" th:text="*{contentText}">
+                                Content
+                            </p>
+                        </div>
+                        <a class="video-content" th:href="*{contentMedia}">
+                            <div class="card-logo">
+                                <i class="fab fa-youtube fa-2x"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div th:if="${notes} eq null" class="empty-container d-flex justify-content-center">

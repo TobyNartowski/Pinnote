@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.tobynartowski.pinnote.model.Note;
 import pl.tobynartowski.pinnote.model.Tag;
 import pl.tobynartowski.pinnote.service.NoteService;
+import pl.tobynartowski.pinnote.service.UserService;
 
 import java.security.Principal;
 import java.util.Arrays;
@@ -17,10 +18,12 @@ import java.util.Arrays;
 public class DashboardController {
 
     private NoteService noteService;
+    private UserService userService;
 
     @Autowired
-    public DashboardController(NoteService noteService) {
+    public DashboardController(NoteService noteService, UserService userService) {
         this.noteService = noteService;
+        this.userService = userService;
     }
 
     @RequestMapping("/dashboard")
@@ -33,15 +36,9 @@ public class DashboardController {
     }
 
     @PostMapping("/dashboard/add")
-    public String add(@ModelAttribute Note note) {
-        System.err.println("-- New note --");
-        System.err.println("Title:" + note.getTitle() + ";");
-        System.err.println("Text:" + note.getContentText() + ";");
-        System.err.println("Media:" + note.getContentMedia() + ";");
-        System.err.print("Tags:");
-        note.getTags().forEach(t -> System.err.print(" " + t.getName()));
-        System.err.println(";");
-        System.err.println("Type:" + note.getType() + ";");
+    public String add(@ModelAttribute Note note, Principal principal) {
+        note.getTags().removeIf(tag -> tag.getName().isBlank());
+        noteService.addNote(userService.getUserByEmail(principal.getName()), note);
         return "redirect:/";
     }
 }
