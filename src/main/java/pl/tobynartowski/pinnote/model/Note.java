@@ -21,8 +21,7 @@ public class Note implements Serializable {
     @Type(type = "uuid-char")
     private UUID id;
 
-    @NotBlank
-    @Size(min = 3, max = 64)
+    @Size(max = 64)
     private String title;
 
     @Size(max = 4096)

@@ -1,4 +1,8 @@
 function closeModal() {
+    if (typeof enableBackground !== 'undefined') {
+        enableBackground();
+    }
+
     $('.modal-container').addClass('fadeOutUp').delay(300).queue(function() {
         $(this).hide();
         $(this).dequeue();
@@ -6,7 +10,12 @@ function closeModal() {
 }
 
 $(document).ready(function() {
-    $('.modal-container').delay(3000).queue(function() {
+    let modalContainer = $('.modal-container')
+    if (typeof disableBackground !== 'undefined' && modalContainer.is(':visible')) {
+        disableBackground();
+    }
+
+    modalContainer.delay(3000).queue(function() {
         closeModal();
         $(this).dequeue();
     });

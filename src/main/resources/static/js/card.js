@@ -303,6 +303,16 @@ $(document).ready(function() {
         hideNewImage();
     });
 
+    $('#new input[type=submit]').on('click', function(e) {
+        let content = $('#new textarea')
+
+        checkNewContent(content.val());
+        if (!content.val().replace(/\s/g, '').length) {
+            content.addClass('is-invalid was-validated');
+            e.preventDefault();
+        }
+    });
+
     $(document).on('click', function(e) {
         if (which !== CARD_NONE) {
             let target = $(e.target);

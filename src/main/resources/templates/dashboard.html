@@ -33,12 +33,30 @@
     <script src="/js/app.js"></script>
     <script src="/js/card.js"></script>
     <script src="/js/tags.js"></script>
+    <script src="/js/modal.js"></script>
+    <script src="/js/form.js"></script>
 </head>
 <body class="preloader-site">
     <!-- Preloader -->
     <div class="preloader-wrapper">
         <div class="preloader animated fadeIn">
             <img src="img/preloader.gif" alt="Loading...">
+        </div>
+    </div>
+
+    <!-- Info modal -->
+    <div th:unless="${error} eq null" class="modal-container animated fadeInDown">
+        <div class="modal-body modal-error card col-lg-3">
+            <div class="modal-close"><i class="fas fa-times fa-2x"></i></div>
+            <h3>Error</h3>
+            <th:block th:switch="${error}">
+                <p th:case="'new'">
+                    There were errors in the new card!
+                </p>
+                <p th:case="*">
+                    Internal error occured!
+                </p>
+            </th:block>
         </div>
     </div>
 
@@ -118,166 +136,6 @@
     <!-- Cards -->
     <div class="container card-container">
         <div th:unless="${notes} eq null" class="row mb-5 h-100">
-            <!--
-            <div class="col-lg-4 col-md-6">
-                <div id="1" class="card note-card note-text">
-                    <a href="#" class="card-close">
-                        <i class="fas fa-times"></i>
-                    </a>
-                    <div class="card-body">
-                        <h3 class="card-title">Lorem ipsum</h3>
-                            <h5 class="card-subtitle mt-1">
-                                <a href="#dummy">#dummy</a>
-                                <a href="#data">#data</a>
-                            </h5>
-                        <p class="card-text mt-2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div id="2" class="card note-card note-img">
-                    <a href="#" class="card-close close-img">
-                        <i class="fas fa-times"></i>
-                    </a>
-                    <img class="card-img" src="https://static1.squarespace.com/static/55cb4361e4b08dc9aca88339/t/5a9780140852296b12e8a792/1519878203039/Moeraki-Boulders-Sunrise-Long-Exposure-New-Zealand.jpg" alt="Card image">
-                    <div class="card-img-overlay">
-                        <h3 class="card-title">Holiday photo</h3>
-                        <h5 class="card-subtitle mt-1 text">
-                            <a href="#holiday">#holiday</a>
-                            <a href="#sea">#sea</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div id="3" class="card note-card note-img">
-                    <a href="#" class="card-close close-img">
-                        <i class="fas fa-times"></i>
-                    </a>
-                    <img class="card-img" src="https://kinomuranow.pl/sites/default/files/media_uploaded/obrazy/filmy/apollo_112.jpg" alt="Card image">
-                    <div class="card-img-overlay">
-                        <h3 class="card-title">Apollo 11 picture</h3>
-                        <h5 class="card-subtitle mt-1 text">
-                            <a href="#apollo11">#apollo11</a>
-                        </h5>
-                        <div class="card-media-text hidden">
-                            <p class="card-text mt-2">
-                                Apollo 11 was the spaceflight that first landed humans on the Moon. Commander Neil Armstrong and lunar module pilot Buzz Aldrin formed the American crew that landed the Apollo Lunar Module Eagle on July 20, 1969, at 20:17 UTC. Armstrong became the first person to step onto the lunar surface six hours 39 minutes later on July 21 at 02:56 UTC; Aldrin joined him 19 minutes later. They spent about two and a quarter hours together outside the spacecraft, and they collected 47.5 pounds (21.5 kg) of lunar material to bring back to Earth. Command module pilot Michael Collins flew the command module Columbia alone in lunar orbit while they were on the Moon's surface. Armstrong and Aldrin spent 21 hours 31 minutes on the lunar surface at a site they named Tranquility Base before lifting off to rejoin Columbia in lunar orbit.
-
-                                Apollo 11 was launched by a Saturn V rocket from Kennedy Space Center on Merritt Island, Florida, on July 16 at 13:32 UTC, and it was the fifth crewed mission of NASA's Apollo program. The Apollo spacecraft had three parts: a command module (CM) with a cabin for the three astronauts, the only part that returned to Earth; a service module (SM), which supported the command module with propulsion, electrical power, oxygen, and water; and a lunar module (LM) that had two stages – a descent stage for landing on the Moon and an ascent stage to place the astronauts back into lunar orbit.
-
-                                After being sent to the Moon by the Saturn V's third stage, the astronauts separated the spacecraft from it and traveled for three days until they entered lunar orbit. Armstrong and Aldrin then moved into Eagle and landed in the Sea of Tranquility. The astronauts used Eagle's ascent stage to lift off from the lunar surface and rejoin Collins in the command module. They jettisoned Eagle before they performed the maneuvers that propelled Columbia out of the last of its 30 lunar orbits onto a trajectory back to Earth.[4] They returned to Earth and splashed down in the Pacific Ocean on July 24 after more than eight days in space.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div id="4" class="card note-card note-text">
-                    <a href="#" class="card-close">
-                        <i class="fas fa-times"></i>
-                    </a>
-                    <div class="card-body">
-                        <h3 class="card-title">Different Lorem ipsum</h3>
-                            <h5 class="card-subtitle mt-1">
-                                <a href="#dummy">#dummy</a>
-                                <a href="#data">#data</a>
-                            </h5>
-                        <p class="card-text mt-2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div id="5" class="card note-card note-text">
-                    <a href="#" class="card-close">
-                        <i class="fas fa-times"></i>
-                    </a>
-                    <div class="card-body">
-                        <h3 class="card-title">Another one</h3>
-                            <h5 class="card-subtitle mt-1">
-                                <a href="#dummy">#dummy</a>
-                                <a href="#data">#data</a>
-                            </h5>
-                        <p class="card-text mt-2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div id="6" class="card note-card note-img">
-                    <a href="#" class="card-close close-img">
-                        <i class="fas fa-times"></i>
-                    </a>
-                    <img class="card-img" src="https://cdn.shopifycloud.com/hatchful-web/assets/6fcc76cfd1c59f44d43a485167fb3139.png" alt="Card image">
-                    <div class="card-img-overlay">
-                        <h3 class="card-title">Some logo</h3>
-                        <h5 class="card-subtitle mt-1 text">
-                            <a href="#logo">#logo</a>
-                        </h5>
-                        <div class="card-media-text hidden">
-                            <p class="card-text mt-2">
-                                A very nice logo
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div id="7" class="card note-card note-video">
-                    <a href="#" class="card-close close-img">
-                        <i class="fas fa-times"></i>
-                    </a>
-                    <img class="card-img" src="https://img.youtube.com/vi/9ZfN87gSjvI/mqdefault.jpg" alt="Card image">
-                    <div class="card-img-overlay">
-                        <h3 class="card-title">YT video</h3>
-                        <h5 class="card-subtitle mt-1 text">
-                            <a href="#youtube">#youtube</a>
-                            <a href="#landscape">#landscape</a>
-                        </h5>
-                        <div class="card-media-text hidden">
-                            <p class="card-text mt-2">
-                                A landscape is the visible features of an area of land, its landforms, and how they integrate with natural or man-made features.
-                            </p>
-                        </div>
-                        <a class="video-content" th:target="_blank" target="noopener noreferrer" href="http://www.youtube.com/watch?v=9ZfN87gSjvI">
-                            <div class="card-logo">
-                                <i class="fab fa-youtube fa-2x"></i>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div id="8" class="card note-card note-text">
-                    <a href="#" class="card-close">
-                        <i class="fas fa-times"></i>
-                    </a>
-                    <div class="card-body">
-                        <h3 class="card-title">Lorem ipsum</h3>
-                        <h5 class="card-subtitle mt-1">
-                            <a href="#dummy">#dummy</a>
-                            <a href="#data">#data</a>
-                        </h5>
-                        <p class="card-text mt-2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            -->
-
             <div th:each="note: ${notes}" th:object="${note}" th:switch="*{type.toString()}" class="col-lg-4 col-md-6">
                 <div th:id="${noteStat.index + 1}" th:case="TEXT" class="card note-card note-text">
                     <a href="#" class="card-close">
@@ -382,7 +240,7 @@
                         </div>
                     </div>
                     <div class="form-group d-flex justify-content-center">
-                        <textarea th:field="*{contentText}" class="form-control" rows="5"></textarea>
+                        <textarea th:field="*{contentText}" class="form-control form-invalid" rows="5" required></textarea>
                         <div class="img-wrapper hidden">
                             <div class="d-flex ml-3 w-100 h-100 justify-content-center align-items-center">
                                 <img class="img-input" src="" />

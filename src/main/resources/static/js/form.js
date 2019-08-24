@@ -25,6 +25,7 @@ $(document).ready(function() {
 
     $('.form-validated').on('submit', function(e) {
         let form = $(this)[0];
+
         if (form.checkValidity() === false || checkPasswordsConsistency() === false) {
             e.preventDefault();
             e.stopPropagation();

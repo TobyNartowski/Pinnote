@@ -45,19 +45,17 @@ public class UserController {
 
     @PostMapping("/register")
     public String addUser(@ModelAttribute @Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-        bindingResult.getFieldErrors().forEach(f -> System.out.println(f.getField() + ": " + f.getDefaultMessage()));
-
         if (!bindingResult.hasErrors()) {
             if (!userService.checkIfUserExists(user.getEmail())) {
                 userService.registerUser(user);
             } else {
-                redirectAttributes.addAttribute("error", "exists");
+                redirectAttributes.addFlashAttribute("error", "exists");
                 return "redirect:register";
             }
-            redirectAttributes.addAttribute("register", "success");
+            redirectAttributes.addFlashAttribute("register", "success");
             return "redirect:index";
         } else {
-            redirectAttributes.addAttribute("error", "other");
+            redirectAttributes.addFlashAttribute("error", "other");
             return "redirect:register";
         }
     }
