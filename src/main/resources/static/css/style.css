@@ -182,8 +182,10 @@ a .btn-hover {
 }
 
 .note-card .card-subtitle {
-    display: flex;
-    flex-wrap: wrap;
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    /*max-height: 24px;*/
+    white-space: nowrap;
 }
 
 .note-card .card-subtitle > a {

@@ -1,5 +1,7 @@
 const MAX_SIZE = 6;
 let tagList = [];
+let tagsTransitionDelay = 2;
+let cardWidth = 0;
 
 function showErrorValue(text) {
     $('.tags-info').text(text);
@@ -83,7 +85,36 @@ function addNewTag(value) {
     closeErrorValue();
 }
 
+function tagsCollapse(element, totalWidth) {
+    element.style.transform = "translateX(0)";
+    element.style.transitionDuration = "1s";
+
+    setTimeout(function() {
+        tagsScroll(element, totalWidth);
+    }, 5000);
+}
+
+function tagsScroll(element, totalWidth) {
+    element.style.transform = 'translateX(-' + (totalWidth - cardWidth / 1.25) + 'px)';
+    element.style.transitionDelay = tagsTransitionDelay + 's';
+    element.style.transitionDuration = Math.sqrt(totalWidth) / 2 + 's';
+
+    setTimeout(function() {
+        tagsCollapse(element, totalWidth);
+    }, tagsTransitionDelay + Math.sqrt(totalWidth) / 2 * 1000 + 2000);
+}
+
+function animateTag(element, totalWidth) {
+    element.style.transitionTimingFunction = "linear";
+    tagsScroll(element, totalWidth);
+}
+
 $(document).ready(function() {
+    cardWidth = $('.card-text').width();
+    $(window).resize(function() {
+        cardWidth = $('.card-text').width();
+    });
+
     let input = $('.tags-input');
 
     $('.tags-input-wrapper').on('click', function() {
@@ -124,6 +155,18 @@ $(document).ready(function() {
 
             tagList.pop();
             closeErrorValue();
+        }
+    });
+
+    // Tags scrolling
+    $('.card-container .card-subtitle').each(function() {
+        let totalWidth = 0;
+        $(this).children().each(function() {
+            totalWidth += $(this).width();
+        });
+
+        if (totalWidth - (cardWidth + 20) > 0) {
+            animateTag($(this)[0], totalWidth);
         }
     });
 });

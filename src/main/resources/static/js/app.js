@@ -51,7 +51,7 @@ function checkTagNumber() {
 }
 
 function checkTags(e) {
-    var button = $(e.target);
+    let button = $(e.target);
     if (button.hasClass('btn-tag-clicked')) {
         button.removeClass('btn-tag-clicked');
         tagEnabled = null;
