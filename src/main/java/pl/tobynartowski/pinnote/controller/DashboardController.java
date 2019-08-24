@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -17,6 +18,7 @@ import pl.tobynartowski.pinnote.service.UserService;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Arrays;
+import java.util.UUID;
 
 @Controller
 public class DashboardController {
@@ -43,7 +45,6 @@ public class DashboardController {
     public RedirectView add(@ModelAttribute @Valid Note note, BindingResult bindingResult, Principal principal,
                             RedirectAttributes redirectAttributes) {
         if (note.getTitle().isBlank()) {
-            System.err.println("isblank");
             if (note.getContentText().length() < 17) {
                 note.setTitle(note.getContentText());
             } else {
@@ -60,6 +61,12 @@ public class DashboardController {
 
         note.getTags().removeIf(tag -> tag.getName().isBlank());
         noteService.addNote(userService.getUserByEmail(principal.getName()), note);
+        return new RedirectView("/dashboard", false);
+    }
+
+    @RequestMapping("/dashboard/delete/{id}")
+    public RedirectView delete(@PathVariable UUID id) {
+        noteService.removeNote(id);
         return new RedirectView("/dashboard", false);
     }
 }

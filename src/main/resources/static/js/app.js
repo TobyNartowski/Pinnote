@@ -75,20 +75,20 @@ $(document).ready(function() {
     });
 
     // Settings button
-    var settingsEnabled = false;
+    let settingsEnabled = false;
     $('#settingsButton').click(function() {
         toggleDropdown($('#settingsContent'), settingsEnabled, $('#settingsIcon'));
         settingsEnabled = !settingsEnabled;
     });
 
-    var settingsContentDelay = 0.15;
+    let settingsContentDelay = 0.15;
     $('#settingsContent .btn-dropdown-item').each(function() {
         $(this).css('animation-delay', settingsContentDelay.toString() + 's');
         settingsContentDelay += 0.10;
     });
 
     // Filter button
-    var filterEnabled = false;
+    let filterEnabled = false;
     $('#filterButton').click(function() {
         toggleDropdown($('#filterContent'), filterEnabled, $('#filterIcon'));
         filterEnabled = !filterEnabled;

@@ -13,6 +13,7 @@ import pl.tobynartowski.pinnote.repository.NoteRepository;
 import pl.tobynartowski.pinnote.repository.UserRepository;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -65,9 +66,10 @@ public class NoteServiceTest {
         User user = new User("johndoe@gmail.com", "password");
         noteService.addNote(user, note);
 
+        when(noteRepository.findById(any(UUID.class))).thenReturn(Optional.of(note));
         when(userRepository.findByNotesContains(note)).thenReturn(user);
 
-        noteService.removeNote(note);
+        noteService.removeNote(note.getId());
         assertThat(user.getNotes()).doesNotContain(note);
     }
 

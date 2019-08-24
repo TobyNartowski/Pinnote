@@ -8,6 +8,8 @@ import pl.tobynartowski.pinnote.repository.NoteRepository;
 import pl.tobynartowski.pinnote.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class NoteService {
@@ -30,12 +32,16 @@ public class NoteService {
         return savedNote;
     }
 
-    public void removeNote(Note note) {
-        User noteOwner = userRepository.findByNotesContains(note);
-        noteOwner.getNotes().remove(note);
-        userRepository.save(noteOwner);
+    public void removeNote(UUID noteId) {
+        Optional<Note> noteOptional = noteRepository.findById(noteId);
+        if (noteOptional.isPresent()) {
+            Note note = noteOptional.get();
+            User noteOwner = userRepository.findByNotesContains(note);
+            noteOwner.getNotes().remove(note);
+            userRepository.save(noteOwner);
 
-        noteRepository.delete(note);
+            noteRepository.delete(note);
+        }
     }
 
     public List<Note> getNotesByEmail(String email) {
