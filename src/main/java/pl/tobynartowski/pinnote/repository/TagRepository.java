@@ -6,4 +6,6 @@ import pl.tobynartowski.pinnote.model.Tag;
 
 @Repository
 public interface TagRepository extends CrudRepository<Tag, Long> {
+
+    Tag findByName(String name);
 }

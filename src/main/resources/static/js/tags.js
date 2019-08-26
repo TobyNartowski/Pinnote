@@ -110,9 +110,9 @@ function animateTag(element, totalWidth) {
 }
 
 $(document).ready(function() {
-    cardWidth = $('.card-text').width();
+    cardWidth = $('.card-title').width();
     $(window).resize(function() {
-        cardWidth = $('.card-text').width();
+        cardWidth = $('.card-title').width();
     });
 
     let input = $('.tags-input');

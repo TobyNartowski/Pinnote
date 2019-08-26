@@ -17,8 +17,7 @@ import pl.tobynartowski.pinnote.service.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.Arrays;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class DashboardController {
@@ -32,12 +31,38 @@ public class DashboardController {
         this.userService = userService;
     }
 
-    @RequestMapping("/dashboard")
-    public String dashboard(Model model, Principal principal) {
-        model.addAttribute("notes", noteService.getNotesByEmail(principal.getName()));
+    private void getAllDashboardData(Model model, Principal principal) {
+        List<Note> allNotes = noteService.getNotesByEmail(principal.getName());
+        model.addAttribute("notes", allNotes);
+
+        if (allNotes != null) {
+            Set<Tag> tags = new LinkedHashSet<>();
+            allNotes.forEach(n -> tags.addAll(n.getTags()));
+            model.addAttribute("tags", tags);
+        }
+
         Note newNote = new Note();
         newNote.setTags(Arrays.asList(new Tag(), new Tag(), new Tag(), new Tag(), new Tag(), new Tag()));
         model.addAttribute("note", newNote);
+
+    }
+
+    @RequestMapping("/dashboard")
+    public String dashboard(Model model, Principal principal) {
+        getAllDashboardData(model, principal);
+        return "dashboard";
+    }
+
+    @RequestMapping("/dashboard/{tag}")
+    public String filter(Model model, Principal principal, @PathVariable String tag) {
+        List<Note> foundNotes = noteService.getNotesByEmailAndTag(principal.getName(), tag);
+        getAllDashboardData(model, principal);
+
+        if (foundNotes != null) {
+            model.addAttribute("notes", foundNotes);
+            model.addAttribute("filter", tag);
+        }
+
         return "dashboard";
     }
 
@@ -51,8 +76,6 @@ public class DashboardController {
                 note.setTitle(note.getContentText().substring(0, 17) + "...");
             }
         }
-        System.err.println(note.getTitle());
-        bindingResult.getFieldErrors().forEach(f -> System.err.println(f.getField() + ": " + f.getDefaultMessage()));
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("error", "new");
@@ -60,6 +83,7 @@ public class DashboardController {
         }
 
         note.getTags().removeIf(tag -> tag.getName().isBlank());
+        note.getTags().forEach(t -> t.setName(t.getName().toLowerCase().substring(1)));
         noteService.addNote(userService.getUserByEmail(principal.getName()), note);
         return new RedirectView("/dashboard", false);
     }

@@ -67,26 +67,15 @@
         </a>
         <div class="form-inline justify-content-center text-center">
             <div class="tags-wrapper">
-                <!--
-                <span id="t1" class="btn btn-tag btn-pill btn-sm navbar-text animated fadeInRight">
-                    #landscape
-                </span>
-                <span id="t2" class="btn btn-tag btn-pill btn-sm navbar-text animated fadeInRight">
-                    #photography
-                </span>
-                <span id="t3" class="btn btn-tag btn-pill btn-sm navbar-text animated fadeInRight">
-                    #dummy
-                </span>
-                <span id="t4" class="btn btn-tag btn-pill btn-sm navbar-text animated fadeInRight">
-                    #nothingimportant
-                </span>
-                <span id="t5" class="btn btn-tag btn-pill btn-sm navbar-text animated fadeInRight">
-                    #secondthing
-                </span>
-                -->
+                <a th:each="tag : ${tags}" th:object="${tag}" th:href="@{/dashboard/} + *{name}">
+                    <span th:id="|t${tagStat.index + 1}|" th:text="|#*{name}|"
+                          class="btn btn-tag btn-pill btn-sm navbar-text"
+                          th:classappend="|${filter}| == *{name} ? 'btn-tag-clicked' : ''">
+                    </span>
+                </a>
             </div>
             <div id="navbarFilter" class="navbar-filter input-group input-group-seamless mr-2">
-                <span class="number animated bounceIn" onselectstart="return false"></span>
+                <span class="number animated bounceIn" onselectstart="return false" th:if="${filter} != null"></span>
                 <div id="filterButton">
                     <div class="navbar-btn">
                         <i id="filterIcon" class="fas fa-filter"></i>
@@ -144,7 +133,7 @@
                     <div class="card-body">
                         <h3 class="card-title" th:text="*{title}">Title</h3>
                         <h5 class="card-subtitle mt-1">
-                            <a th:each="tag: ${note.tags}" th:object="${tag}" th:text="${tag.name}" th:href="${tag.name}">#tag</a>
+                            <a th:each="tag: ${note.tags}" th:object="${tag}" th:text="|#${tag.name}|" th:href="@{/dashboard/} + ${tag.name}">#tag</a>
                         </h5>
                         <p class="card-text mt-2" th:text="*{contentText}">
                             Content
@@ -160,7 +149,7 @@
                     <div class="card-img-overlay">
                         <h3 class="card-title" th:text="*{title}">Title</h3>
                         <h5 class="card-subtitle mt-1 text">
-                            <a th:each="tag: ${note.tags}" th:object="${tag}" th:text="${tag.name}" th:href="${tag.name}">#tag</a>
+                            <a th:each="tag: ${note.tags}" th:object="${tag}" th:text="|#${tag.name}|" th:href="@{/dashboard/} + ${tag.name}">#tag</a>
                         </h5>
                         <div class="card-media-text hidden">
                             <p class="card-text mt-2" th:text="*{contentText}">
@@ -178,7 +167,7 @@
                     <div class="card-img-overlay">
                         <h3 class="card-title" th:text="*{title}">Title</h3>
                         <h5 class="card-subtitle mt-1 text">
-                            <a th:each="tag: ${note.tags}" th:object="${tag}" th:text="${tag.name}" th:href="${tag.name}">#tag</a>
+                            <a th:each="tag: ${note.tags}" th:object="${tag}" th:text="|#${tag.name}|" th:href="@{/dashboard/} + ${tag.name}">#tag</a>
                         </h5>
                         <div class="card-media-text hidden">
                             <p class="card-text mt-2" th:text="*{contentText}">
