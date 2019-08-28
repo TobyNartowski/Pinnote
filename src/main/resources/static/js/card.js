@@ -343,6 +343,12 @@ $(document).keydown(function(e) {
 
     if (e.which === 27) {
         closeContainer();
+        $('.search-txt').blur().val('');
+    }
+
+    if (e.which === 9 && which !== CARD_NEW) {
+        $('.search-txt').focus();
+        e.preventDefault();
     }
 });
 
