@@ -51,9 +51,8 @@ public class DashboardController {
                     .entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                     .limit(10).collect(LinkedHashSet::new, (s, m) -> s.add(m.getKey()), Set::addAll));
 
-
-
             model.addAttribute("tags", sortedTags);
+            model.addAttribute("allTags", allTags.stream().map(Tag::getName).collect(Collectors.toSet()));
         }
 
         Note newNote = new Note();

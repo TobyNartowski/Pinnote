@@ -391,6 +391,11 @@ a .btn-hover {
         display: none;
     }
 
+    .search-txt:focus {
+        width: 140px;
+        padding: 0 6px 0 20px;
+    }
+
     .search-box:hover > .search-txt {
         width: 140px;
         padding: 0 6px 0 20px;

@@ -56,6 +56,15 @@ function checkTags(e) {
     }
 }
 
+function searchForTag() {
+    let searchTxt = $('.search-txt');
+    if (allTags.includes(searchTxt.val())) {
+        window.location.replace('/dashboard/' + searchTxt.val());
+    } else {
+        searchTxt.css('color', 'red');
+    }
+}
+
 $(document).ready(function() {
     checkTagsWidth();
     $(window).resize(checkTagsWidth);
@@ -115,5 +124,21 @@ $(document).ready(function() {
     // Logout
     $('#logoutButton').on('click', function() {
         $(this).closest($('.form-logout')).submit();
+    });
+
+    // Search
+    $('.search-txt').on('keypress', function(e) {
+        if (e.which === 13) {
+            searchForTag();
+        }
+    });
+
+    $('.search-box').on('click', function(e) {
+        let searchTxt = $('.search-txt');
+        if (searchTxt.val() === '') {
+            searchTxt.focus();
+        } else {
+            searchForTag();
+        }
     });
 });
