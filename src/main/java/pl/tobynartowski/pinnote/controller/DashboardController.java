@@ -18,6 +18,8 @@ import pl.tobynartowski.pinnote.service.UserService;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Controller
 public class DashboardController {
@@ -31,14 +33,27 @@ public class DashboardController {
         this.userService = userService;
     }
 
-    private void getAllDashboardData(Model model, Principal principal) {
+    private void getAllDashboardData(Model model, Principal principal, String tag) {
         List<Note> allNotes = noteService.getNotesByEmail(principal.getName());
         model.addAttribute("notes", allNotes);
 
         if (allNotes != null) {
-            Set<Tag> tags = new LinkedHashSet<>();
-            allNotes.forEach(n -> tags.addAll(n.getTags()));
-            model.addAttribute("tags", tags);
+            List<Tag> allTags = new ArrayList<>();
+            allNotes.forEach(n -> allTags.addAll(n.getTags()));
+
+            Set<Tag> sortedTags = new LinkedHashSet<>();
+            if (tag != null) {
+                allTags.stream().filter(t -> t.getName().equals(tag)).findAny().ifPresent(sortedTags::add);
+            }
+
+            sortedTags.addAll(allTags
+                    .stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                    .entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                    .limit(10).collect(LinkedHashSet::new, (s, m) -> s.add(m.getKey()), Set::addAll));
+
+
+
+            model.addAttribute("tags", sortedTags);
         }
 
         Note newNote = new Note();
@@ -49,14 +64,14 @@ public class DashboardController {
 
     @RequestMapping("/dashboard")
     public String dashboard(Model model, Principal principal) {
-        getAllDashboardData(model, principal);
+        getAllDashboardData(model, principal, null);
         return "dashboard";
     }
 
     @RequestMapping("/dashboard/{tag}")
     public String filter(Model model, Principal principal, @PathVariable String tag) {
         List<Note> foundNotes = noteService.getNotesByEmailAndTag(principal.getName(), tag);
-        getAllDashboardData(model, principal);
+        getAllDashboardData(model, principal, tag);
 
         if (foundNotes != null) {
             model.addAttribute("notes", foundNotes);
