@@ -104,7 +104,7 @@
                     <div class="btn-dropdown d-flex animated fadeInRight">
                         <div class="btn-dropdown-item w-100 animated slideInRight">
                             <a href="#" class="btn btn-sm btn-dark btn-block btn-pill">
-                                <i class="fas fa-moon"></i>&nbsp; Dark mode</a>
+                                <i class="fas fa-moon"></i>&nbsp; Dark mode (soon)</a>
                         </div>
                         <form th:action="@{/logout}" method="post" class="form-logout w-100">
                            <div id="logoutButton" class="btn-dropdown-item w-100 animated slideInRight">
@@ -219,13 +219,13 @@
                     <input id="new-media" th:field="*{contentMedia}" type="hidden">
 
                     <div class="form-group input-group input-group-seamless">
-                        <input th:field="*{title}" type="text" class="h3-input" placeholder="Great title" autocomplete="off">
+                        <input maxlength="64" th:field="*{title}" type="text" class="h3-input" placeholder="Great title" autocomplete="off">
                     </div>
                     <div class="tags-input-wrapper form-group input-group input-group-seamless">
                         <div class="tags-prepend">
                             <input th:each="tag, i : *{tags}" th:field="*{tags[__${i.index}__].name}" class="btn btn-outline-dark btn-sm mr-1 mb-1 hidden">
                         </div>
-                        <input type="text" class="h5-input tags-input" placeholder="+ Add tag" autocomplete="off">
+                        <input maxlength="32" type="text" class="h5-input tags-input" placeholder="+ Add tag" autocomplete="off">
                         <div class="tags-info-wrapper hidden">
                             <div class="tags-info">
                                 Tags error
