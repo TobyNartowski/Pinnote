@@ -10,7 +10,7 @@
     </parent>
     <groupId>pl.tobynartowski</groupId>
     <artifactId>pinnote</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>Pinnote</name>
     <description>Quick and easy online pinboard</description>
 
